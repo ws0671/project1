@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+  <style>
+    .popup{
+      position: fixed;
+      background-color: #ccc;
+      max-width: 500px;
+      min-height: 100px;
+      left: 30%;
+      top: 20%;
+      z-index: 1000;
+      display: none;
+      padding: 0 20px 0 20px;
+    }
+  
+    .title, .awrong-words-heading{
+      text-align: center;
+    }
+    .flexbox{
+      display: flex;
+      /* justify-content: space-around; */
+      flex-direction: column;
+    }
+    .total-score{
+      display: flex;
+      justify-content: space-around;
+    }
+    .total-score > dd{
+      margin-left: 5px;
+    }
+    .awrong-words{
+      padding-left: 0;
+    }
+    .awrong-words > li{
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .close-btn{
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 30px;
+      border: 0;
+      background:transparent;
+      cursor: pointer;
+      outline: 0;
+    }
+    .overlay {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.4);
+        z-index: 999;
+        display: none;
+      }
+    .popup-btn{
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="popup">
+    <h1 class="title">결과</h1>
+    <div class="flexbox">
+      <dl class="total-score">
+        <dt class="collect">맞은개수</dt>
+        <dd class="collect-num">0</dd>
+        <dt class="awrong">틀린개수</dt>
+        <dd class="awrong-num">0</dd>
+      </dl>
+      <div class="awrong-words-box">
+        <h2 class="awrong-words-heading">틀린단어들</h2>
+        <ol class="awrong-words">
+          <li>
+            <span class="word">banana</span>
+            <span>|</span>
+            <span class="mean">오렌지</span>
+          </li>
+          <li>
+            <span class="word">orange</span>
+            <span>|</span>
+            <span class="mean">바나나</span>
+          </li>
+          <li>
+            <span class="word">tree</span>
+            <span>|</span>
+            <span class="mean">소나무</span>
+          </li>
+          <li>
+            <span class="word">computer</span>
+            <span>|</span>
+            <span class="mean">컴퓨터</span>
+          </li>
+          <li>
+            <span class="word">javascript</span>
+            <span>|</span>
+            <span class="mean">자바</span>
+          </li>
+          <li>
+            <span class="word">html</span>
+            <span>|</span>
+            <span class="mean">css</span>
+          </li>
+          <li>
+            <span class="word">css</span>
+            <span>|</span>
+            <span class="mean">파이썬</span>
+          </li>
+          <li>
+            <span class="word">django</span>
+            <span>|</span>
+            <span class="mean">리엑트</span>
+          </li>
+          <li>
+            <span class="word">algorithm</span>
+            <span>|</span>
+            <span class="mean">자료구조</span>
+          </li>
+        </ol>
+      </div>
+    </div>
+    <button class="close-btn"><i class="bx bx-x"></i></button>
+  </div>
+  <div class="overlay"></div>
+  <button class="popup-btn">result Popup Btn</button>
+  <script>
+    $popupBtn = document.querySelector('.popup-btn');
+    $popup = document.querySelector('.popup');
+    $closeBtn = document.querySelector('.close-btn');
+    $overlay = document.querySelector('.overlay');
+    
+    console.log($overlay)
+    $popupBtn.onclick = () => {
+      $popup.style.display = 'block'; 
+      $overlay.style.display = 'block';
+    };
+
+    $closeBtn.onclick = () => {
+      $popup.style.display = 'none';  
+      $overlay.style.display = 'none';
+    };
+
+  </script>
+</body>
+</html>
+
