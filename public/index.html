@@ -4,58 +4,81 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Word and Quiz</title>
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-  <header class="header">
-    <nav class="nav">
-      <ul class="tab">
-        <li><button class="tab-words">WORDS</button></li>
-        <li><button class="tab-test">TEST GAME</button></li>
+  <div class="container">
+    <header class="header" role="banner">
+      <h1 class="heading">LEE's WordBank</h1>
+    </header>
+    <main class="main" role="main">
+      <ul class="nav reset-list" role="tablist">
+        <!-- a태그 클릭 시 default 동작안하게 js로 작업 필요 -->
+        <li role="none"><a class="tab words" href="#" role="tab" aria-selected="true" aria-controls="wordsPage" id="tabWords">WORDS</a></li>
+        <li role="none"><a class="tab test" href="#" role="tab" aria-selected="false" aria-controls="testPage" id="tabTest">TEST GAME</a></li>
       </ul>
-    </nav>
-  </header>
-  <main class="main">
-    <div class="words-page">
-      <section class="search-word">
-        <h2 class="search-heading">Search or Add Words</h2>
-        <input type="text" class="search-input" id="searchInput">
-        <label for="searchInput"><button class="search-btn">Search</button></label>
-        <input type="text" class="search-result" id="searchResult">
-        <label for="searchResult"><button class="edit-button">Add</button></label>
-      </section>
-      <section>
-        <h2 class="list-heading">Words List</h2>
-        <dl class="word-list">
-          <dt id="7">tree</dt>
-          <dd id="ck-7">나무</dd>
-          <dt id="6">bird</dt>
-          <dd id="ck-6">새</dd>
-          <dt id="5">tree</dt>
-          <dd id="ck-5">나무</dd>
-          <dt id="4">tree</dt>
-          <dd id="ck-4">나무</dd>
-          <dt id="3">tree</dt>
-          <dd id="ck-3">나무</dd>
-          <dt id="2">tree</dt>
-          <dd id="ck-2">나무</dd>
-          <dt id="1">tree</dt>
-          <dd id="ck-1">나무</dd>
-        </dl>
-      </section>
-    </div>
-    <div class="test-page">
-      <button class="start-btn">Start</button>
-      <ul class="test-section">
-        <li><span class="problem">Sample Word</span></li>
-        <li><input type="text" class="answer" placeholder="Type Your Answer"></li>
-      </ul>
-      <span class="questions-num">8/10</span>
-      <button class="finish-btn">Finish</button>
-    </div>
-  </main>
-  <footer class="footer">
-    <address>서울특별시 성동구 성수2가3동 289-10, 8층 D강의실</address>
-  </footer>
+      <div class="words-page active" role="tabpanel" id="wordsPage" aria-labelledby="tabWords">
+        <form class="search-form">
+          <fieldset class="search-word">
+            <legend>Search Word</legend>
+            <input type="text" class="search-input" id="searchInput">
+            <label for="searchInput"></label>
+            <button class="search-btn">Search</button>
+          </fieldset>
+          <fieldset class="edit-add">
+            <legend>Edit or Add Word</legend>
+            <input type="text" class="search-result" id="addInput">
+            <label for="addInput"></label>
+            <button class="add-btn">Add</button>
+            <button class="delete-btn">Delete</button>
+          </fieldset>
+        </form>
+        <section class="list">
+          <h3 class="list-heading">Words List</h3>
+          <dl class="words-list reset-list">
+            <dt id="4">treetreetreetreetreetreetree</dt>
+            <dd id="ck-4">나무</dd>
+            <dt id="3">tree</dt>
+            <dd id="ck-3">나무</dd>
+            <dt id="2">tree</dt>
+            <dd id="ck-2">나무나무나무나무나무나무나무나무나무나무나무나무나무</dd>
+            <dt id="1">tree</dt>
+            <dd id="ck-1">나무</dd>
+          </dl>
+          <button class="clear-btn">Clear</button>
+        </section>
+      </div>
+      <div class="test-page" role="tabpanel" id="testPage" aria-labelledby="tabTest">
+        <section class="quiz">
+          <h3 class="quiz-heading">Quiz</h3>
+          <button class="start-btn">Start</button>
+          <form class="quiz-form">
+            <fieldset>
+              <legend>QUIZ</legend>
+              <label for="quizAnswer">Sample Word</label>
+              <input class="answer" type="text" placeholder="Type Your Answer" id="quizAnswer">
+            </fieldset>
+          </form>
+          <span class="quiz-num">8/10</span>
+          <button class="finish-btn">Finish</button>
+        </section>
+        <section class="result">
+          <h3 class="result-heading">Score</h3>
+          <p class="score">100</p>
+          <ul class="wrong-answers reset-list">
+            <li><em>Quiz: tree</em><span>Your answer : 꽃</span><span>Correct Answer : 나무</span></li>
+            <li><em>Quiz: tree</em><span>Your answer : 꽃</span><span>Correct Answer : 나무</span></li>
+            <li><em>Quiz: tree</em><span>Your answer : 꽃</span><span>Correct Answer : 나무</span></li>
+            <li><em>Quiz: tree</em><span>Your answer : 꽃</span><span>Correct Answer : 나무</span></li>
+            <li><em>Quiz: tree</em><span>Your answer : 꽃</span><span>Correct Answer : 나무</span></li>
+          </ul>
+        </section>
+      </div>
+    </main>
+    <footer class="footer">
+      <address>서울특별시 성동구 성수2가3동 289-10, 8층 D강의실</address>
+    </footer>
+  </div>
 </body>
 </html>
