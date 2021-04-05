@@ -58,6 +58,13 @@ const start = () => {
   $testNum.textContent = `${resultWords.length + 1}/${testWordsNum}`
 };
 
+const checkOfMean = () => {
+  if ($answerInput.value === testWords[0].mean){
+    $testAnswer.textContent = '맞았습니다';
+  } else {
+    $testAnswer.textContent = '틀렸습니다';
+  }
+};
 
 
 $testStartBtn.onclick = () => {
@@ -66,3 +73,9 @@ $testStartBtn.onclick = () => {
   changeDisabled();
   start();
 };
+
+$answerInput.onkeydown = e => {
+  if (!$answerInput.value || e.key !== 'Enter') return
+  checkOfMean();
+  $answerInput.value = '';
+}
