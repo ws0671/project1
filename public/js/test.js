@@ -1,6 +1,8 @@
 let testWords = [];
 let resultWords = [];
 let testWordsNum = 0;
+let testWordsIndex = 0;
+
 
 $testAnswer = document.querySelector('.test-form > fieldset > label');
 $testNum = document.querySelector('.test-num');
@@ -54,18 +56,19 @@ const changeDisabled = () => {
 let testRunning = false;
 
 const start = () => {
-  $testAnswer.textContent = testWords[0].word;
-  $testNum.textContent = `${resultWords.length + 1}/${testWordsNum}`
+  $testAnswer.textContent = testWords[testWordsIndex].word;
+  $testNum.textContent = `${testWordsIndex + 1}/${testWordsNum}`
 };
 
 const checkOfMean = () => {
-  if ($answerInput.value === testWords[0].mean){
+  if ($answerInput.value === testWords[testWordsIndex].mean){
     $testAnswer.textContent = '맞았습니다';
   } else {
     $testAnswer.textContent = '틀렸습니다';
   }
+  ++testWordsIndex;
+  setTimeout(start, 1000);
 };
-
 
 $testStartBtn.onclick = () => {
   getTestWords();
