@@ -1,0 +1,157 @@
+li{
+    list-style-type: none;
+  }
+  .container{
+    width: 600px;
+    height: 400px;
+    margin: auto;
+    position: relative;
+  }
+  .tab{
+    display: flex;
+    justify-content: space-evenly;
+    padding-left: 0;
+  }
+  .tab-words{
+    background-color: skyblue;
+    border: 0;
+    cursor: pointer;
+    padding: 20px 60px 20px 60px;
+  }
+  .tab-test{
+    background-color: purple;
+    border: 0;
+    cursor: pointer;
+    padding: 20px 60px 20px 60px;
+  }
+  .words-page{
+    display: none;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+  }
+  .search-word{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: flex-end; */
+    align-items: flex-end;
+  }
+  .search-input{
+    order: -2;
+  }
+  .search-result{
+    order: -1;
+  }
+  .search-heading{
+    order: -3;
+  }
+  .word-lists{
+    width: 150px;
+  }
+  .word-list > *{
+    margin: 0;
+    display: inline-block;
+  }
+  .word-list > dt{
+    text-align: left;
+    width: 70px;
+  }
+  .word-list > dd{
+    text-align: right;
+  }
+
+
+  .test-page{
+    display: flex;
+  }
+  .start-btn{
+    position: absolute;
+    bottom: 0;
+    padding: 20px 80px;
+  }
+  .finish-btn{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 20px 80px;
+    cursor: not-allowed;
+  }
+  .questions-num{
+    position: absolute;
+    bottom: 50px;
+    left: 280px;
+  }
+  
+  .problem{
+    position: absolute;
+    left: 190px;
+    bottom: 270px;
+    font-size: xx-large;
+  }
+  .answer{
+    position: absolute;
+    left: 150px;
+    bottom: 150px;
+    padding: 20px 50px;
+    cursor: not-allowed;
+  }
+
+
+/* 팝업 */
+.popup{
+    position: fixed;
+    background-color: #ccc;
+    max-width: 500px;
+    min-height: 100px;
+    left: 30%;
+    top: 20%;
+    z-index: 1000;
+    display: none;
+    padding: 0 20px 0 20px;
+  }
+
+  .title, .wrong-words-heading{
+    text-align: center;
+  }
+  .flexbox{
+    display: flex;
+    /* justify-content: space-around; */
+    flex-direction: column;
+  }
+  .total-score{
+    display: flex;
+    justify-content: space-around;
+  }
+  .total-score > dd{
+    margin-left: 5px;
+  }
+  .wrong-words{
+    padding-left: 0;
+  }
+  .wrong-words > li{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .close-btn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 30px;
+    border: 0;
+    background:transparent;
+    cursor: pointer;
+    outline: 0;
+  }
+  .overlay {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 999;
+      display: none;
+    }
+  .popup-btn{
+    cursor: pointer;
+  }
