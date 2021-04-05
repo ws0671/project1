@@ -17,7 +17,7 @@
         <li role="none"><a class="tab test" href="#" role="tab" aria-selected="false" aria-controls="testPage" id="tabTest">TEST</a></li>
       </ul>
       <!-- words-page 랑 test-page 중 tab에서 클릭하면 클래스명에 active가 생기게끔 js처리 -->
-      <div class="words-page active" role="tabpanel" id="wordsPage" aria-labelledby="tabWords">
+      <div class="words-page" role="tabpanel" id="wordsPage" aria-labelledby="tabWords">
         <form class="words-form">
           <fieldset class="search-form">
             <legend>Search Word</legend>
@@ -26,7 +26,7 @@
             <button class="search-btn">Search</button>
           </fieldset>
           <fieldset class="edit-form">
-            <legend>Edit or Add Word</legend>
+            <legend>Edit or Add Meaning</legend>
             <input type="text" class="search-result" id="editInput">
             <label for="editInput"></label>
             <button class="add-btn">Add</button> 
@@ -50,7 +50,7 @@
           <button class="test-start-btn">Start</button>
           <form class="test-form">
             <fieldset>
-              <legend>TEST</legend>
+              <legend>Test</legend>
               <label for="testAnswer">Sample Word</label>
               <input class="answer" type="text" placeholder="Type Your Answer" id="testAnswer">
             </fieldset>
@@ -58,7 +58,7 @@
           <span class="test-num">8/10</span>
           <button class="test-finish-btn">Finish</button>
         </section>
-        <section class="test-result-section">
+        <section class="test-result-section active">
           <h3 class="test-result-heading">Score</h3>
           <p class="test-score">100</p>
           <ul class="test-results-popup reset-list">
