@@ -58,7 +58,7 @@ let testRunning = false;
 const start = () => {
   if (testWordsIndex === testWords.length) return popupOutput();
   $testAnswer.textContent = testWords[testWordsIndex].word;
-  $testNum.textContent = `${testWordsIndex + 1}/${testWordsNum}`
+  $testNum.textContent = `${testWordsIndex + 1}/${testWordsNum}`;
 };
 
 const checkOfMean = () => {
@@ -69,13 +69,20 @@ const checkOfMean = () => {
     getWrongWord();
   };
   ++testWordsIndex;
-  setTimeout(start, 1000);
+  setTimeout(start, 500);
 };
 
 const popupOutput = () => {
-  console.log(wrongWords);
+  testRunning = false;
+  changeDisabled();
+  $testAnswer.textContent = 'Sample Word';
+  $testStartBtn.textContent = 'Start';
+  if (testWordsIndex === 0) return;
   console.log('팝업창');
-}
+  testWordsIndex = 0;
+  $testNum.textContent = `${testWordsIndex}/0`;  
+  wrongWords = [];
+};
 
 const getWrongWord = () => {
   wrongWords = [{id: +`${testWords[testWordsIndex].id}`, mean: `${$answerInput.value ? $answerInput.value : 'skip'}`}, ...wrongWords];
@@ -84,21 +91,25 @@ const getWrongWord = () => {
 const skip = () => {
   getWrongWord();
   ++testWordsIndex;
-  console.log(testWordsIndex);
   start();
-}
+};
+
 
 $testStartBtn.onclick = e => {
   if (e.target.textContent === 'skip') return skip();
-  getTestWords();
   testRunning = true;
+  getTestWords();
   changeDisabled();
   start();
   $testStartBtn.textContent = 'skip';
 };
 
+$testFinishBtn.onclick = () => {
+  popupOutput();
+};
+
 $answerInput.onkeydown = e => {
-  if (!$answerInput.value || e.key !== 'Enter') return
+  if (!$answerInput.value || e.key !== 'Enter') return;
   checkOfMean();
   $answerInput.value = '';
 }
