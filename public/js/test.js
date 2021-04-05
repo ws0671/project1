@@ -1,5 +1,5 @@
 let testWords = [];
-let resultWords = [];
+let wrongWords = [];
 let testWordsNum = 0;
 let testWordsIndex = 0;
 
@@ -64,7 +64,10 @@ const checkOfMean = () => {
   if ($answerInput.value === testWords[testWordsIndex].mean){
     $testAnswer.textContent = '맞았습니다';
   } else {
+    wrongWords = [{id: +`${testWords[testWordsIndex].id}`, mean: `${$answerInput.value}`}, ...wrongWords];
     $testAnswer.textContent = '틀렸습니다';
+    console.log(wrongWords);
+    console.log(testWords);
   }
   ++testWordsIndex;
   setTimeout(start, 1000);
