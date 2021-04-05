@@ -1,0 +1,158 @@
+@import url(./normalize.css);
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+.reset-list {
+  padding-left: 0;
+  list-style-type: none;
+  margin: 0;
+}
+
+fieldset {
+  text-align: center;
+}
+
+label {
+  display: block;
+}
+
+.container {
+  color: #333;
+  font-size: 16px;
+  font-family: Spoqa Han Sans Neo, sans-serif;
+  line-height: 1.5;
+  max-width: 840px;
+  min-height: 100vh;
+  margin: 0 auto;
+}
+
+.tablist {
+  display: float;
+}
+
+.tab {
+  width: 50%;
+  float: left;
+  margin: 0;
+  color: #ffffff;
+  text-decoration: none;
+  text-align: center;
+  font-size: 1.6em;
+  height: 36px;
+  border-radius: 10px 10px 0 0;
+}
+
+.tab.words {
+  background-color: #8977AD;
+}
+
+.tab.test {
+  background-color: #4ca8d8;
+}
+
+.words-page {
+  border: 2px solid #8977AD;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.words-form {
+  grid-column-start: 2;
+  grid-row-start: 1;
+}
+
+.list-section {
+  grid-column-start: 1;
+  grid-row-start: 1;
+  margin: 10px;
+  background-color: rgba(137, 119, 173, 0.3);
+}
+
+.list-heading {
+  text-align: center;
+  margin: 10px 0 0 0;
+}
+
+.words-list {
+  text-align: center;
+  padding: 10px;
+}
+
+.words-list > dt {
+  display: inline-block;
+  width: 30%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.words-list > dd {
+  margin: 0;
+  display: inline-block;
+  width: 68%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.clear-btn {
+  display: block;
+  width: 50%;
+  margin: 10px auto;
+}
+
+.test-page {
+  border: 2px solid #4ca8d8;
+}
+
+.test-section {
+  height: 200px;
+  position: relative;
+}
+
+.test-start-btn, .test-finish-btn {
+  color: #4ca8d8;
+  position: absolute;
+  border: none;
+  bottom: 0;
+}
+
+.test-form label {
+  display: block;
+}
+
+.test-result-heading {
+  top: 0;
+  text-align: center;
+}
+
+.test-start-btn {
+  left: 30px;
+}
+
+.test-num {
+  display: block;
+  text-align: center;
+}
+
+.test-finish-btn {
+  right: 30px;
+}
+
+.test-form {
+  top: 30%;
+  left: 0;
+  right: 0;
+}
+
+.test-result-section {
+  text-align: center;
+  width: 50%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: rgba(76, 168, 216, 0.3);
+}
+
+.footer {
+  text-align: center;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,149 @@
+@import url(./normalize.css);
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+
+$site_max_width: 960px;
+$font_color: #333;
+$word_theme_color: #8977AD;
+$word_theme_bgc: rgba(137, 119, 173, 0.3);
+$test_theme_color: #4ca8d8;
+$test_theme_bgc: rgba(76, 168, 216, 0.3);
+$font_family: Spoqa Han Sans Neo, sans-serif;
+$font_size: 16px;
+$line_height: 1.5;
+
+.reset-list {
+  padding-left: 0;
+  list-style-type: none;
+  margin: 0;
+}
+
+fieldset {
+  text-align: center;
+}
+label {
+  display: block;
+}
+
+.container{
+  // background-color: #ffff00;
+  color: $font_color;
+  font-size: $font_size;
+  font-family: $font_family;
+  line-height: $line_height;
+  max-width: 840px;
+  min-height: 100vh;
+  margin: 0 auto;
+};
+.tablist {
+  display: float;
+};
+.tab{
+  width: 50%;
+  float: left;
+  margin: 0;
+  color: #ffffff;
+  text-decoration: none;
+  text-align: center;
+  font-size: 1.6em;
+  height: 36px;
+  border-radius: 10px 10px 0 0;
+};
+.tab.words {
+  background-color: $word_theme_color;
+};
+.tab.test {
+  background-color: $test_theme_color;
+};
+.words-page {
+  border: 2px solid $word_theme_color;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+};
+.words-form {
+  grid-column-start: 2;
+  grid-row-start: 1;
+}
+.list-section {
+  grid-column-start: 1;
+  grid-row-start: 1;
+  margin: 10px;
+  background-color:$word_theme_bgc;
+}
+.list-heading {
+  text-align: center;
+  margin: 10px 0 0 0;
+}
+.words-list {
+  text-align: center;
+  padding: 10px;
+}
+.words-list > dt {
+  display: inline-block;
+  width: 30%;
+  white-space: nowrap; 
+  text-overflow: ellipsis; 
+  overflow: hidden;
+};
+.words-list > dd {
+  margin: 0;
+  display: inline-block;
+  width: 68%;
+  white-space: nowrap; 
+  text-overflow: ellipsis; 
+  overflow: hidden;
+}
+.clear-btn {
+  display: block;
+  width: 50%;
+  margin: 10px auto;
+}
+.test-page {
+  border: 2px solid $test_theme_color;
+}
+
+.test-section {
+  height: 200px;
+  position: relative;
+};
+
+.test-start-btn, .test-finish-btn {
+  color: $test_theme_color;
+  position: absolute;
+  border: none;
+  bottom: 0;
+};
+
+.test-form label {
+  display: block;
+}
+
+.test-result-heading {
+  top: 0;
+  text-align: center;
+}
+.test-start-btn {
+  left: 30px;
+}
+.test-num {
+  display: block;
+  text-align: center;
+}
+.test-finish-btn{
+  right: 30px;
+}
+.test-form {
+  top: 30%;
+  left: 0;
+  right: 0;
+}
+.test-result-section {
+  text-align: center;
+  width: 50%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: $test_theme_bgc;
+}
+.footer {
+  // background-color: lime;
+  text-align: center;
+}
