@@ -72,8 +72,8 @@
     <h1 class="title">결과</h1>
     <div class="flexbox">
       <dl class="total-score">
-        <dt class="collect">맞은개수</dt>
-        <dd class="collect-num">0</dd>
+        <dt class="correct">맞은개수</dt>
+        <dd class="correct-num">0</dd>
         <dt class="wrong">틀린개수</dt>
         <dd class="wrong-num">0</dd>
       </dl>
@@ -133,10 +133,10 @@
   <div class="overlay"></div>
   <button class="popup-btn">result Popup Btn</button>
   <script>
-    $popupBtn = document.querySelector('.popup-btn');
-    $popup = document.querySelector('.popup');
-    $closeBtn = document.querySelector('.close-btn');
-    $overlay = document.querySelector('.overlay');
+    const $popupBtn = document.querySelector('.popup-btn');
+    const $popup = document.querySelector('.popup');
+    const $closeBtn = document.querySelector('.close-btn');
+    const $overlay = document.querySelector('.overlay');
     
     console.log($overlay)
     $popupBtn.onclick = () => {

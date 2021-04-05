@@ -1,6 +1,7 @@
 let words = []
-const $wordList = document.querySelector(".word-list")
-const $searchInput = document.querySelector(".search-result")
+const $wordList = document.querySelector(".words-list")
+const $searchInput = document.querySelector(".search-input")
+const $searchResult = document.querySelector(".search-result")
 words = [
     { id: 3, word: 'rabbit', mean: '토끼'},
     { id: 2, word: 'lion', mean: '사자' },
@@ -17,9 +18,17 @@ const render = () => {
 document.addEventListener('DOMContentLoaded', render);
 
 const addTodo = () => {
-    words = [{id: 4, word: $searchInput.value, mean: }]
+  words = [{id: generateNextId(), word: $searchInput.value, mean: $searchResult.value }, ...words]
+  $searchInput.value = "";
+  $searchResult.value = "";
+  render();    
 }
 
 const generateNextId = () => {
-    words.map()
+  return Math.max(...words.map(word => word.id), 0)+1
+}
+
+document.querySelector('.add-btn').onclick = () =>{
+  if($searchInput.value === ""||$searchResult.value==="") return
+  addTodo()
 }

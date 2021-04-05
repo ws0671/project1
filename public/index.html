@@ -4,58 +4,78 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Word and Quiz</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <script defer src="words.js"></script>
 </head>
 <body>
-  <header class="header">
-    <nav class="nav">
-      <ul class="tab">
-        <li><button class="tab-words">WORDS</button></li>
-        <li><button class="tab-test">TEST GAME</button></li>
+  <div class="container">
+    <main class="main">
+      <ul class="tablist reset-list" role="tablist">
+        <!-- a태그 클릭 시 default 동작안하게 js 처리 (맨마지막에 시간 남으면) -->
+        <li role="none"><a class="tab words" href="#" role="tab" aria-selected="true" aria-controls="wordsPage" id="tabWords">WORDS</a></li>
+        <li role="none"><a class="tab test" href="#" role="tab" aria-selected="false" aria-controls="testPage" id="tabTest">TEST</a></li>
       </ul>
-    </nav>
-  </header>
-  <main class="main">
-    <div class="words-page">
-      <section class="search-word">
-        <h2 class="search-heading">Search or Add Words</h2>
-        <input type="text" class="search-input" id="searchInput">
-        <label for="searchInput"><button class="search-btn">Search</button></label>
-        <input type="text" class="search-result" id="searchResult">
-        <label for="searchResult"><button class="edit-button">Add</button></label>
-      </section>
-      <section>
-        <h2 class="list-heading">Words List</h2>
-        <dl class="word-list">
-          <dt id="7">tree</dt>
-          <dd id="ck-7">나무</dd>
-          <dt id="6">bird</dt>
-          <dd id="ck-6">새</dd>
-          <dt id="5">tree</dt>
-          <dd id="ck-5">나무</dd>
-          <dt id="4">tree</dt>
-          <dd id="ck-4">나무</dd>
-          <dt id="3">tree</dt>
-          <dd id="ck-3">나무</dd>
-          <dt id="2">tree</dt>
-          <dd id="ck-2">나무</dd>
-          <dt id="1">tree</dt>
-          <dd id="ck-1">나무</dd>
-        </dl>
-      </section>
-    </div>
-    <div class="test-page">
-      <button class="start-btn">Start</button>
-      <ul class="test-section">
-        <li><span class="problem">Sample Word</span></li>
-        <li><input type="text" class="answer" placeholder="Type Your Answer"></li>
-      </ul>
-      <span class="questions-num">8/10</span>
-      <button class="finish-btn">Finish</button>
-    </div>
-  </main>
-  <footer class="footer">
-    <address>서울특별시 성동구 성수2가3동 289-10, 8층 D강의실</address>
-  </footer>
+      <!-- words-page 랑 test-page 중 tab에서 클릭하면 클래스명에 active가 생기게끔 js처리 -->
+      <div class="words-page active" role="tabpanel" id="wordsPage" aria-labelledby="tabWords">
+        <form class="words-form">
+          <fieldset class="search-form">
+            <legend>Search Word</legend>
+            <input type="text" class="search-input" id="searchInput">
+            <label for="searchInput"></label>
+            <button class="search-btn">Search</button>
+          </fieldset>
+          <fieldset class="edit-form">
+            <legend>Edit or Add Word</legend>
+            <input type="text" class="search-result" id="editInput">
+            <label for="editInput"></label>
+            <button class="add-btn">Add</button> 
+            <!-- 이미 있는 결과값이면 edit으로 바뀌게끔 js처리 -->
+            <button class="delete-btn">Delete</button>
+            <!-- 결과값이 없는 경우엔 delete 버튼 disabled로 js처리-->
+          </fieldset>
+        </form>
+        <section class="list-section">
+          <h3 class="list-heading">Words List</h3>
+          <dl class="words-list reset-list">
+            <!-- js로 데이터 동적 생성해야하는 부분 -->
+            
+          </dl>
+          <button class="clear-btn">Clear</button>
+        </section>
+      </div>
+      <div class="test-page" role="tabpanel" id="testPage" aria-labelledby="tabTest">
+        <section class="test-section">
+          <h3 class="test-heading">TEST</h3>
+          <button class="test-start-btn">Start</button>
+          <form class="test-form">
+            <fieldset>
+              <legend>TEST</legend>
+              <label for="testAnswer">Sample Word</label>
+              <input class="answer" type="text" placeholder="Type Your Answer" id="testAnswer">
+            </fieldset>
+          </form>
+          <span class="test-num">8/10</span>
+          <button class="test-finish-btn">Finish</button>
+        </section>
+        <section class="test-result-section">
+          <h3 class="test-result-heading">Score</h3>
+          <p class="test-score">100</p>
+          <ul class="test-results-popup reset-list">
+            <!-- js로 동적 생성해야 하는 부분 -->
+            <li><em>Quiz: tree</em><span>Your answer : 꽃</span><span>Correct Answer : 나무</span></li>
+            <li><em>Quiz: tree</em><span>Your answer : 꽃</span><span>Correct Answer : 나무</span></li>
+            <li><em>Quiz: tree</em><span>Your answer : 꽃</span><span>Correct Answer : 나무</span></li>
+            <li><em>Quiz: tree</em><span>Your answer : 꽃</span><span>Correct Answer : 나무</span></li>
+            <li><em>Quiz: tree</em><span>Your answer : 꽃</span><span>Correct Answer : 나무</span></li>
+          </ul>
+          <button class="close-result-btn">닫기</button>
+        </section>
+      </div>
+    </main>
+    <footer class="footer">
+      <address>서울특별시 성동구 성수2가3동 289-10, 8층 D강의실</address>
+    </footer>
+  </div>
 </body>
 </html>

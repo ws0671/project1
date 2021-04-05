@@ -102,6 +102,8 @@
     }
   </style>
   <script defer src="./words.js"></script>
+  <link rel="stylesheet" href="/test-game-tab.css">
+  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
 </head>
 <body>
   <div class="container">
@@ -135,12 +137,35 @@
         <button class="start-btn">Start</button>
         <ul class="test-section">
           <li><span class="problem">Sample Word</span></li>
-          <li><input type="text" class="answer" placeholder="Type Your Answer"></li>
+          <li><input type="text" class="answer" placeholder="Type Your Answer" disabled></li>
         </ul>
-        <span class="questions-num">8/10</span>
-        <button class="finish-btn">Finish</button>
+        <span class="questions-num">0/0</span>
+        <button class="finish-btn" disabled>Finish</button>
       </div>
     </main>
+    <div class="popup">
+      <h1 class="title">결과</h1>
+      <div class="flexbox">
+        <dl class="total-score">
+          <dt class="correct">맞은개수</dt>
+          <dd class="correct-num">0</dd>
+          <dt class="wrong">틀린개수</dt>
+          <dd class="wrong-num">0</dd>
+        </dl>
+        <div class="wrong-words-box">
+          <h2 class="wrong-words-heading">틀린단어들</h2>
+          <ol class="wrong-words">
+            <!-- <li>
+              <span class="word">word</span>
+              <span>|</span>
+              <span class="mean">mean</span>
+            </li> -->
+          </ol>
+        </div>
+      </div>
+      <button class="close-btn"><i class="bx bx-x"></i></button>
+    </div>
+    <div class="overlay"></div>
     <!-- <footer class="footer">
       <address>서울특별시 성동구 성수2가3동 289-10, 8층 D강의실</address>
     </footer> -->
@@ -162,5 +187,6 @@
 
     
   </script>
+  <script src="/test-game-tab.js"></script>
 </body>
 </html>
