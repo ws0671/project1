@@ -1,12 +1,16 @@
 let testWords = [];
+let resultWords = [];
+let testWordsNum = 0;
 
 $testAnswer = document.querySelector('.test-form > fieldset > label');
+$testNum = document.querySelector('.test-num');
 
 $testStartBtn = document.querySelector('.test-start-btn');
 $testFinishBtn = document.querySelector('.test-finish-btn');
 
 $answerInput = document.querySelector('.answer');
 $wordsTab = document.querySelector('.tab.words');;
+
 
 const getTestWords = () => {
   testWords = [
@@ -29,13 +33,14 @@ const getTestWords = () => {
       return array;
     };
   shuffle(testWords);
+  testWordsNum = testWords.length;
 };
 
 const changeDisabled = () => {
-  $testFinishBtn.disabled = !gameRunning;
-  $answerInput.disabled = !gameRunning;
-  $wordsTab.disabled = gameRunning;
-  if (gameRunning) {
+  $testFinishBtn.disabled = !testRunning;
+  $answerInput.disabled = !testRunning;
+  $wordsTab.disabled = testRunning;
+  if (testRunning) {
     $wordsTab.style.cursor = 'not-allowed';
     $answerInput.style.cursor = 'auto';
     $testFinishBtn.style.cursor = 'pointer';
@@ -43,22 +48,21 @@ const changeDisabled = () => {
     $wordsTab.style.cursor = 'pointer';
     $answerInput.style.cursor = 'not-allowed';
     $testFinishBtn.style.cursor = 'not-allowed';
-  }
+  };
 };
 
-let gameRunning = false;
+let testRunning = false;
 
 const start = () => {
-  getTestWords();
-  gameRunning = true;
-  changeDisable();
   $testAnswer.textContent = testWords[0].word;
-  
+  $testNum.textContent = `${resultWords.length + 1}/${testWordsNum}`
 };
 
 
 
 $testStartBtn.onclick = () => {
-  console.log('ho')
+  getTestWords();
+  testRunning = true;
+  changeDisabled();
   start();
-}
+};
