@@ -52,57 +52,60 @@ const getTestWords = () => {
 let testRunning = false;
 
 const start = () => {
+  console.log(testWords.length)
+  console.log(testWordsIndex)
   if (testWordsIndex === testWords.length) return popupOutput();
   $testAnswer.textContent = testWords[testWordsIndex].word;
   $testNum.textContent = `${testWordsIndex + 1}/${testWordsNum}`;
 };
 
-// const checkOfMean = () => {
-//   if ($answerInput.value === testWords[testWordsIndex].mean){
-//     $testAnswer.textContent = '맞았습니다';
-//   } else {
-//     $testAnswer.textContent = '틀렸습니다';
-//     getWrongWord();
-//   };
-//   ++testWordsIndex;
-//   setTimeout(start, 500);
-// };
+const checkOfMean = () => {
+  if ($answerInput.value === testWords[testWordsIndex].mean){
+    $testAnswer.textContent = '맞았습니다';
+  } else {
+    $testAnswer.textContent = '틀렸습니다';
+    getWrongWord();
+  };
+  ++testWordsIndex;
+  setTimeout(start, 500);
+};
 
-// const getWrongWord = () => {
-//   wrongWords = [
-//     {Quiz: `${testWords[testWordsIndex].word}`, 
-//     yourAnswer: `${$answerInput.value ? $answerInput.value : 'skip'}`, 
-//     correctAnswer: `${testWords[testWordsIndex].mean}`}, 
-//     ...wrongWords
-//   ];
-// };
+const getWrongWord = () => {
+  wrongWords = [
+    {Quiz: `${testWords[testWordsIndex].word}`, 
+    yourAnswer: `${$answerInput.value ? $answerInput.value : 'skip'}`, 
+    correctAnswer: `${testWords[testWordsIndex].mean}`}, 
+    ...wrongWords
+  ];
+  console.log(wrongWords);
+};
 
-// const skip = () => {
-//   getWrongWord();
-//   ++testWordsIndex;
-//   start();
-// };
+const skip = () => {
+  getWrongWord();
+  ++testWordsIndex;
+  start();
+};
 
-// const popupOutput = () => {
-//   testRunning = false;
-//   changeDisabled();
-//   $testAnswer.textContent = 'Sample Word';
-//   $testStartBtn.textContent = 'Start';
-//   if (testWordsIndex === 0) return;
-//   $testResultPopup.innerHTML = wrongWords.map(
-//     ({Quiz, yourAnswer, correctAnswer}) => 
-//     `<li>
-//     <em>Quiz: ${Quiz}</em>
-//     <span>Your answer : ${yourAnswer}</span>
-//     <span>Correct Answer : ${correctAnswer}</span>
-//     </li>`).join('');
-//     $overlay.style.display = 'block';
-//     $testPage.classList.toggle('.active');
-//     $testResultSection.classList.toggle('active');
-//     testWordsIndex = 0;
-//     $testNum.textContent = `${testWordsIndex}/0`;  
-//     wrongWords = [];
-//   };
+const popupOutput = () => {
+  testRunning = false;
+  changeDisabled();
+  $testAnswer.textContent = 'Sample Word';
+  $testStartBtn.textContent = 'Start';
+  testWordsIndex = 0;
+  $testNum.textContent = `${testWordsIndex}/0`;  
+  if (wrongWords.length === 0) return;
+  $testResultPopup.innerHTML = wrongWords.map(
+    ({Quiz, yourAnswer, correctAnswer}) => 
+    `<li>
+    <em>Quiz: ${Quiz}</em>
+    <span>Your answer : ${yourAnswer}</span>
+    <span>Correct Answer : ${correctAnswer}</span>
+    </li>`).join('');
+    $overlay.style.display = 'block';
+    $testPage.classList.toggle('active');
+    $testResultSection.classList.toggle('active');
+    wrongWords = [];
+  };
   
 const changeDisabled = () => {
   $testFinishBtn.disabled = !testRunning;
@@ -121,36 +124,36 @@ const changeDisabled = () => {
   
   
 $testStartBtn.onclick = e => {
-  // if (e.target.textContent === 'skip') return skip();
+  if (e.target.textContent === 'skip') return skip();
   testRunning = true;
-  // getTestWords();
+  getTestWords();
   changeDisabled();
-  // start();
-  // $testStartBtn.textContent = 'skip';
+  start();
+  $testStartBtn.textContent = 'skip';
 };
 
-// $testFinishBtn.onclick = () => {
-//   popupOutput();
-// };
+$testFinishBtn.onclick = () => {
+  popupOutput();
+};
 
-// $answerInput.onkeydown = e => {
-//   if (!$answerInput.value || e.key !== 'Enter') return;
-//   checkOfMean();
-//   $answerInput.value = '';
-// };
+$answerInput.onkeydown = e => {
+  if (!$answerInput.value || e.key !== 'Enter') return;
+  checkOfMean();
+  $answerInput.value = '';
+};
 
-// $wordsTab.onclick = () => {
-//   $wordsPage.classList.toggle('active');
-//   $testPage.classList.toggle('active');
-// };
+$wordsTab.onclick = () => {
+  $wordsPage.classList.toggle('active');
+  $testPage.classList.toggle('active');
+};
 
-// $testTab.onclick = () => {
-//   $testPage.classList.toggle('active');
-//   $wordsPage.classList.toggle('active');
-// };
+$testTab.onclick = () => {
+  $testPage.classList.toggle('active');
+  $wordsPage.classList.toggle('active');
+};
 
-// $PopupCloseBtn.onclick = () => {
-//   $testPage.classList.toggle('active');
-//   $testResultSection.classList.toggle('active');
-//   $overlay.style.display = 'none';
-// };
+$PopupCloseBtn.onclick = () => {
+  $testPage.classList.toggle('active');
+  $testResultSection.classList.toggle('active');
+  $overlay.style.display = 'none';
+};
