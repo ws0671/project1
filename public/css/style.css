@@ -6,13 +6,17 @@
   margin: 0;
 }
 
+body * {
+  box-sizing: border-box;
+}
+
 fieldset {
-  text-align: center;
   border: none;
 }
 
-legend {
+legend, .a11y-hidden {
   position: absolute;
+  display: inline-block;
   width: 1px;
   height: 1px;
   margin: -1px;
@@ -24,7 +28,22 @@ label {
   display: block;
 }
 
+button {
+  border: none;
+  color: #fff;
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  box-shadow: 3px 3px #aaa;
+}
+
+button:hover {
+  opacity: 80%;
+  cursor: pointer;
+}
+
 .container {
+  background-color: pink;
   color: #333;
   font-size: 16px;
   font-family: Spoqa Han Sans Neo, sans-serif;
@@ -38,7 +57,6 @@ label {
 .tab {
   width: 50%;
   float: left;
-  margin: 0;
   color: #ffffff;
   text-decoration: none;
   text-align: center;
@@ -55,11 +73,11 @@ label {
   background-color: #4ca8d8;
 }
 
-.words-page, .test-section {
+.words-page, .test-page {
   position: absolute;
   top: 36px;
   width: 100%;
-  height: 40vh;
+  height: calc(100vh - 36px);
   max-width: 960px;
 }
 
@@ -68,10 +86,18 @@ label {
 }
 
 .words-page {
-  background-color: rgba(137, 119, 173, 0.7);
+  background-color: #fff;
   border: 2px solid #8977AD;
   display: grid;
   grid-template-columns: 1fr 1fr;
+}
+
+.words-page button {
+  background-color: #8977AD;
+}
+
+.words-page label {
+  display: inline-block;
 }
 
 .words-form {
@@ -83,7 +109,7 @@ label {
   grid-column-start: 1;
   grid-row-start: 1;
   margin: 10px;
-  background-color: rgba(137, 119, 173, 0.7);
+  background-color: #e6e6fa;
 }
 
 .list-heading {
@@ -113,22 +139,19 @@ label {
 }
 
 .clear-btn {
-  display: block;
-  width: 50%;
-  margin: 10px auto;
+  position: relative;
+  left: 60%;
 }
 
 .test-section {
   border: 2px solid #4ca8d8;
-  background-color: rgba(76, 168, 216, 0.7);
-  top: 30%;
+  background-color: #fff;
+  height: calc(100vh - 36px);
 }
 
 .test-start-btn, .test-finish-btn {
-  color: #4ca8d8;
   position: absolute;
-  border: none;
-  background-color: rgba(76, 168, 216, 0.7);
+  background-color: #4ca8d8;
   bottom: 20px;
 }
 
@@ -141,6 +164,8 @@ label {
 }
 
 .test-num {
+  position: absolute;
+  bottom: 20px;
   display: block;
   text-align: center;
 }
@@ -155,16 +180,22 @@ label {
   right: 0;
 }
 
+.test-form fieldset {
+  text-align: center;
+}
+
 .test-result-section {
   position: absolute;
-  top: 60%;
+  top: 0;
   left: 0;
   right: 0;
+  bottom: 0;
   text-align: center;
   width: 50%;
   margin: 20px auto;
   padding: 20px;
   background-color: rgba(255, 255, 0, 0.7);
+  z-index: -1;
 }
 
 .footer {
