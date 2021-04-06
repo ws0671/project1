@@ -34,8 +34,15 @@ button {
   color: #fff;
   width: 100px;
   height: 30px;
-  border-radius: 5px;
+  border-radius: 2px;
   box-shadow: 3px 3px #aaa;
+  outline: none;
+}
+
+button:active {
+  box-shadow: none;
+  opacity: 80%;
+  transform: translate(2px, 2px);
 }
 
 button:hover {
@@ -44,7 +51,6 @@ button:hover {
 }
 
 .container {
-  background-color: pink;
   color: #333;
   font-size: 16px;
   font-family: Spoqa Han Sans Neo, sans-serif;
@@ -71,7 +77,7 @@ button:hover {
 }
 
 .tab.test {
-  background-color: #4ca8d8;
+  background-color: #4cbefc;
 }
 
 .words-page, .test-page {
@@ -90,11 +96,21 @@ button:hover {
   background-color: #fff;
   border: 2px solid #8977AD;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+}
+@media screen and (max-width: 800px) {
+  .words-page {
+    grid-template-columns: 1fr;
+  }
+}
+@media screen and (min-width: 801px) {
+  .words-page {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .words-page button {
   background-color: #8977AD;
+  width: 25%;
 }
 
 .words-page label {
@@ -102,15 +118,34 @@ button:hover {
 }
 
 .words-form {
-  grid-column-start: 2;
   grid-row-start: 1;
+}
+@media screen and (min-width: 801px) {
+  .words-form {
+    grid-column-start: 2;
+  }
+}
+
+.search-input, .search-result {
+  border: 1px solid #8977AD;
+  width: 70%;
+  padding: 5px;
 }
 
 .list-section {
-  grid-column-start: 1;
-  grid-row-start: 1;
   margin: 10px;
   background-color: #e6e6fa;
+}
+@media screen and (min-width: 801px) {
+  .list-section {
+    grid-column-start: 1;
+    grid-row-start: 1;
+  }
+}
+@media screen and (max-width: 800px) {
+  .list-section {
+    grid-row-start: 2;
+  }
 }
 
 .list-heading {
@@ -119,8 +154,11 @@ button:hover {
 }
 
 .words-list {
-  text-align: center;
-  padding: 10px;
+  padding: 20px;
+  max-height: 60vh;
+  overflow: auto;
+  margin: 20px;
+  background-color: #fff;
 }
 
 .words-list > * {
@@ -141,12 +179,12 @@ button:hover {
 
 .clear-btn {
   position: relative;
-  left: 60%;
+  left: 70%;
 }
 
 .test-section {
-  border: 2px solid #4ca8d8;
-  background-color: #fff;
+  border: 2px solid #4cbefc;
+  background-color: #beedfd;
   height: calc(100vh - 36px);
 }
 
@@ -159,7 +197,7 @@ button:hover {
 }
 
 .test-start-btn, .test-finish-btn {
-  background-color: #4ca8d8;
+  background-color: #4cbefc;
   bottom: 20px;
 }
 
@@ -191,12 +229,13 @@ button:hover {
 
 fieldset label {
   font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 60px;
+  font-size: 4em;
 }
 
 .answer {
   margin: 10px;
-  border: 2px solid rgba(76, 168, 216, 0.8);
+  border: 2px solid #4cbefc;
+  background-color: #fff;
   width: 300px;
   height: 40px;
   text-align: center;
@@ -232,10 +271,7 @@ fieldset label {
 .test-result-heading {
   text-align: center;
   font-family: Georgia, "Times New Roman", Times, serif;
-}
-
-.test-results-popup {
-  overflow: auto;
+  font-size: 2em;
 }
 
 .close-result-btn {
@@ -245,6 +281,7 @@ fieldset label {
 }
 
 .footer {
+  background-color: lime;
   position: fixed;
   top: 100%;
   text-align: center;
