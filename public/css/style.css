@@ -36,6 +36,7 @@ button {
   height: 30px;
   border-radius: 2px;
   box-shadow: 3px 3px #aaa;
+  outline: none;
 }
 
 button:active {
