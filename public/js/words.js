@@ -18,8 +18,6 @@ const render = () => {
 document.addEventListener('DOMContentLoaded', render);
 
 const add = () => {
-  // if($searchInput.value === words.map(word => word.word).find(element => element === $searchInput.value))
-  // return words = [{...word, mean : $searchResult.value}] 
   words = [{id: generateNextId(), word: $searchInput.value, mean: $searchResult.value }, ...words]
   $searchInput.value = "";
   $searchResult.value = "";
@@ -39,14 +37,16 @@ const remove = () => {
 const generateNextId = () => {
   return Math.max(...words.map(word => word.id), 0) + 1
 }
+
+
 document.querySelector('.search-btn').onclick = e => {
   if($searchInput.value === "") return
   if($searchInput.value === words.map(word => word.word).find(element => element === $searchInput.value))    
-  return $searchResult.value = words.filter(({ word }) => word === $searchInput.value)[0].mean;
+  return $searchResult.value = words.filter(({ word }) => word === $searchInput.value)[0].mean
+  // ,document.querySelector('.add-btn').textContent = "Edit"
+  // document.querySelector('.delete-btn').textContent = "Disabled"
   alert("단어가 없습니다")
-  
 }
-
 
 document.querySelector('.add-btn').onclick = () =>{
   if($searchInput.value === ""||$searchResult.value==="") return
