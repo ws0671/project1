@@ -138,11 +138,13 @@ $answerInput.onkeydown = e => {
 };
 
 $wordsTab.onclick = () => {
+  if ($wordsPage.classList.length === 2) return
   $wordsPage.classList.toggle('active');
   $testPage.classList.toggle('active');
 };
 
 $testTab.onclick = () => {
+  if ($testPage.classList.length === 2) return
   $testPage.classList.toggle('active');
   $wordsPage.classList.toggle('active');
 };
