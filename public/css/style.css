@@ -150,6 +150,12 @@ button:hover {
 }
 
 .test-section > * {
+.answer{
+  cursor: not-allowed;
+}
+
+.test-start-btn, .test-finish-btn {
+  color: #4ca8d8;
   position: absolute;
 }
 
@@ -160,6 +166,7 @@ button:hover {
 
 .test-start-btn {
   left: 30px;
+  cursor: pointer;
 }
 
 .test-num {
@@ -170,6 +177,7 @@ button:hover {
 
 .test-finish-btn {
   right: 30px;
+  cursor: not-allowed;
 }
 
 .test-form {
@@ -193,6 +201,16 @@ fieldset label {
   width: 300px;
   height: 40px;
   text-align: center;
+/* 블러처리 */
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+  display: none;
 }
 
 .test-result-section {
