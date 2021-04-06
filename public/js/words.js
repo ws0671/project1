@@ -6,7 +6,7 @@ const $searchResult = document.querySelector(".search-result")
 words = [
     { id: 3, word: 'rabbit', mean: '토끼', result: true },
     { id: 2, word: 'lion', mean: '사자', result: true },
-    { id: 1, word:'tree' , mean: '나무', result: true }
+    { id: 1, word: 'tree', mean: '나무', result: true }
 ]
 
 const render = () => {
@@ -35,6 +35,7 @@ const remove = () => {
   $searchResult.value = "";
   render();    
 }
+
 const generateNextId = () => {
   return Math.max(...words.map(word => word.id), 0) + 1
 }

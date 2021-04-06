@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url(./normalize.css);
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
 .reset-list {
@@ -150,13 +151,11 @@ button:hover {
 }
 
 .test-section > * {
-.answer{
-  cursor: not-allowed;
+  position: absolute;
 }
 
-.test-start-btn, .test-finish-btn {
-  color: #4ca8d8;
-  position: absolute;
+.answer {
+  cursor: not-allowed;
 }
 
 .test-start-btn, .test-finish-btn {
@@ -197,10 +196,12 @@ fieldset label {
 
 .answer {
   margin: 10px;
-  border: 2px solid rgba(76, 168, 216, 0.7);
+  border: 2px solid rgba(76, 168, 216, 0.8);
   width: 300px;
   height: 40px;
   text-align: center;
+}
+
 /* 블러처리 */
 .overlay {
   position: fixed;
@@ -208,26 +209,42 @@ fieldset label {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.4);
   z-index: 999;
   display: none;
+  backdrop-filter: blur(2px);
 }
 
 .test-result-section {
+  display: none;
   position: absolute;
-  top: 0;
+  top: 10vh;
   left: 0;
   right: 0;
-  bottom: 0;
   text-align: center;
-  width: 50%;
-  margin: 20px auto;
+  width: 50vw;
+  max-height: 80vh;
+  margin: auto;
   padding: 20px;
+<<<<<<< HEAD
   background-color: rgba(255, 255, 0, 0.7);
+=======
+  background-color: rgba(76, 168, 216, 0.8);
+>>>>>>> d967e0d436981389267476a18805f31243fa1e40
 }
 
 .test-result-heading {
   text-align: center;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.test-results-popup {
+  overflow: auto;
+}
+
+.close-result-btn {
+  box-shadow: none;
+  background-color: #ccc;
+  color: #333;
 }
 
 .footer {
