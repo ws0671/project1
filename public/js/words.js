@@ -39,9 +39,6 @@ const generateNextId = () => {
   return Math.max(...words.map(word => word.id), 0) + 1
 }
 
-
-
-
 document.querySelector('.search-btn').onclick = e => {
   if($searchInput.value === "") return
   if($searchInput.value === words.map(word => word.word).find(element => element === $searchInput.value))    
@@ -69,3 +66,4 @@ document.querySelector('.clear-btn').onclick = () => {
   words = []
   render();
 }
+
