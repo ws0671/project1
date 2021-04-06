@@ -45,15 +45,11 @@ const getTestWords = () => {
     };
   shuffle(testWords);
   testWordsNum = testWords.length;
-  console.log(testWords);
 };
-
 
 let testRunning = false;
 
 const start = () => {
-  console.log(testWords.length)
-  console.log(testWordsIndex)
   if (testWordsIndex === testWords.length) return popupOutput();
   $testAnswer.textContent = testWords[testWordsIndex].word;
   $testNum.textContent = `${testWordsIndex + 1}/${testWordsNum}`;
@@ -77,7 +73,6 @@ const getWrongWord = () => {
     correctAnswer: `${testWords[testWordsIndex].mean}`}, 
     ...wrongWords
   ];
-  console.log(wrongWords);
 };
 
 const skip = () => {
