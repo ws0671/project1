@@ -7,6 +7,7 @@
   <title>Word and Quiz</title>
   <link rel="stylesheet" href="./css/style.css">
   <script defer src="./js/words.js"></script>
+  <script defer src="./js/test.js"></script>
 </head>
 <body>
   <div class="container">
@@ -44,35 +45,32 @@
           <button class="clear-btn">Clear</button>
         </section>
       </div>
-      <div class="test-page" role="tabpanel" id="testPage" aria-labelledby="tabTest">
+      <div class="test-page " role="tabpanel" id="testPage" aria-labelledby="tabTest">
         <section class="test-section">
-          <h3 class="test-heading">TEST</h3>
+          <h3 class="test-heading a11y-hidden">TEST</h3>
           <button class="test-start-btn">Start</button>
           <form class="test-form">
             <fieldset>
               <legend>Test</legend>
               <label for="testAnswer">Sample Word</label>
-              <input class="answer" type="text" placeholder="Type Your Answer" id="testAnswer">
+              <input class="answer" type="text" placeholder="Type Your Answer" id="testAnswer" disabled>
             </fieldset>
           </form>
-          <span class="test-num">8/10</span>
-          <button class="test-finish-btn">Finish</button>
+          <span class="test-num">0/0</span>
+          <button class="test-finish-btn" disabled>Finish</button>
         </section>
         <section class="test-result-section">
           <h3 class="test-result-heading">Score</h3>
           <p class="test-score">100</p>
           <ul class="test-results-popup reset-list">
             <!-- js로 동적 생성해야 하는 부분 -->
-            <li><em>Quiz: tree</em><span>Your answer : 꽃</span><span>Correct Answer : 나무</span></li>
-            <li><em>Quiz: tree</em><span>Your answer : 꽃</span><span>Correct Answer : 나무</span></li>
-            <li><em>Quiz: tree</em><span>Your answer : 꽃</span><span>Correct Answer : 나무</span></li>
-            <li><em>Quiz: tree</em><span>Your answer : 꽃</span><span>Correct Answer : 나무</span></li>
-            <li><em>Quiz: tree</em><span>Your answer : 꽃</span><span>Correct Answer : 나무</span></li>
+            <!-- <li><em>Quiz: tree</em><span>Your answer : 꽃</span><span>Correct Answer : 나무</span></li> -->
           </ul>
           <button class="close-result-btn">닫기</button>
         </section>
       </div>
     </main>
+    <div class="overlay"></div>
     <footer class="footer">
       <address>서울특별시 성동구 성수2가3동 289-10, 8층 D강의실</address>
     </footer>
