@@ -5,9 +5,10 @@ $site_max_width: 960px;
 $font_color: #333;
 $word_theme_color: #8977AD;
 $word_theme_bgc: #e6e6fa;
-$test_theme_color: #4ca8d8;
-$test_theme_bgc: rgba(76, 168, 216, 0.7);
+$test_theme_color: rgba(76, 168, 216, 1);
+$test_theme_bgc: rgba(76, 168, 216, 0.8);
 $font_family: Spoqa Han Sans Neo, sans-serif;
+$secondary_font_family: Georgia, 'Times New Roman', Times, serif;
 $font_size: 16px;
 $line_height: 1.5;
 $tab_height: 36px;
@@ -176,7 +177,6 @@ button:hover{
 .test-finish-btn{
   right: 30px;
   cursor: not-allowed;
-
 }
 .test-form {
   top: 30%;
@@ -187,10 +187,9 @@ button:hover{
   text-align: center;
 }
 fieldset label {
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: 60px;
+  font-family: $secondary_font_family;
+  font-size: 60px; //반응형일 때 조정할 것
 }
-
 .answer {
   margin: 10px;
   border: 2px solid $test_theme_bgc;
@@ -205,29 +204,40 @@ fieldset label {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.4);
   z-index: 999;
   display: none;
+  backdrop-filter: blur(2px);
 }
 
 
 // 팝업창
 .test-result-section {
   position: absolute;
-  top: 0;
+  top: 10vh;
   left: 0;
   right: 0;
-  bottom: 0;
   text-align: center;
-  width: 50%;
-  margin: 20px auto;
+  width: 50vw;
+  max-height: 80vh;
+  margin: auto;
   padding: 20px;
-  background-color: rgba(255, 255, 0, 0.7);
-  z-index: -1;
+  background-color: $test_theme_bgc;
 }
+
 .test-result-heading {
   text-align: center;
+  font-family: $secondary_font_family;
 }
+.test-results-popup {
+  overflow: auto;
+}
+
+.close-result-btn {
+  box-shadow: none;
+  background-color: #ccc;
+  color: #333
+}
+
 .footer {
   // background-color: lime;
   position: fixed;
