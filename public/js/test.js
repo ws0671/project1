@@ -11,7 +11,11 @@ $testStartBtn = document.querySelector('.test-start-btn');
 $testFinishBtn = document.querySelector('.test-finish-btn');
 
 $answerInput = document.querySelector('.answer');
-$wordsTab = document.querySelector('.tab.words');;
+$wordsTab = document.querySelector('.tab.words');
+$testTab = document.querySelector('.tab.test');
+$wordsPage = document.querySelector('.words-page');
+$testPage = document.querySelector('.test-page');
+
 
 
 const getTestWords = () => {
@@ -94,7 +98,6 @@ const skip = () => {
   start();
 };
 
-
 $testStartBtn.onclick = e => {
   if (e.target.textContent === 'skip') return skip();
   testRunning = true;
@@ -112,4 +115,14 @@ $answerInput.onkeydown = e => {
   if (!$answerInput.value || e.key !== 'Enter') return;
   checkOfMean();
   $answerInput.value = '';
-}
+};
+
+$wordsTab.onclick = () => {
+  $wordsPage.classList.toggle('active');
+  $testPage.classList.toggle('active');
+};
+
+$testTab.onclick = () => {
+  $testPage.classList.toggle('active');
+  $wordsPage.classList.toggle('active');
+};
