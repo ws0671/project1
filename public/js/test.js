@@ -98,7 +98,7 @@ const popupOutput = () => {
     </li>`).join('');
     $overlay.style.display = 'block';
     $testPage.classList.toggle('active');
-    $testResultSection.classList.toggle('active');
+    $testResultSection.style.display = 'block';
     wrongWords = [];
   };
   
@@ -149,6 +149,6 @@ $testTab.onclick = () => {
 
 $PopupCloseBtn.onclick = () => {
   $testPage.classList.toggle('active');
-  $testResultSection.classList.toggle('active');
+  $testResultSection.style.display = 'none';
   $overlay.style.display = 'none';
 };
