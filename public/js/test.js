@@ -19,6 +19,7 @@ $testPage = document.querySelector('.test-page');
 $testResultPopup = document.querySelector('.test-results-popup');
 $testResultSection = document.querySelector('.test-result-section');
 $PopupCloseBtn = document.querySelector('.close-result-btn');
+$testScore = document.querySelector('.test-score');
 $overlay = document.querySelector('.overlay');
 
 
@@ -34,7 +35,10 @@ const getTestWords = () => {
     {id:7, word:'orange', mean:'오렌지', result: true},
     {id:8, word:'melon', mean:'멜론', result: true},
     {id:9, word:'dog', mean:'개', result: true},
-    {id:10, word:'cat', mean:'고양이', result: true}
+    {id:10, word:'cat', mean:'고양이', result: true},
+    {id:11, word:'melon', mean:'멜론', result: true},
+    {id:12, word:'dog', mean:'개', result: true},
+    {id:13, word:'cat', mean:'고양이', result: true}
   ];
   const shuffle = array => {
       for (let i = 0; i < array.length; i++) {
@@ -96,9 +100,10 @@ const popupOutput = () => {
     <span>Your answer : ${yourAnswer}</span>
     <span>Correct Answer : ${correctAnswer}</span>
     </li>`).join('');
+    $testScore.textContent = `${(100 - wrongWords.length / testWords.length * 100).toFixed(1)}`;
     $overlay.style.display = 'block';
-    $testPage.classList.toggle('active');
     $testResultSection.style.display = 'block';
+    $testPage.classList.toggle('active');
     wrongWords = [];
   };
   
@@ -124,6 +129,7 @@ $testStartBtn.onclick = e => {
   getTestWords();
   changeDisabled();
   start();
+  $answerInput.focus();
   $testStartBtn.textContent = 'skip';
 };
 
