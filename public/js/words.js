@@ -3,25 +3,32 @@ const $wordList = document.querySelector(".words-list")
 const $searchInput = document.querySelector(".search-input")
 const $searchResult = document.querySelector(".search-result")
 
-words = [
-    { id: 3, word: 'rabbit', mean: '토끼', result: true },
-    { id: 2, word: 'lion', mean: '사자', result: true },
-    { id: 1, word: 'tree', mean: '나무', result: true }
-]
 
-const render = () => {
-    $wordList.innerHTML = words.map(({id,word,mean}) => {
-        return `<dt id="${id}">${word}</dt>
-                <dd id="ck-${id}">${mean}</dd>`
-    }).join('');
+
+const getWords = async () => {
+  const res = await fetch('/words');
+  words = await res.json();
+  console.log(words)
+  render();
 }
 
-document.addEventListener('DOMContentLoaded', render);
+const render = () => {
+  $wordList.innerHTML = words.map(({id,word,mean}) => {
+    return `<dt id="${id}">${word}</dt>
+    <dd id="ck-${id}">${mean}</dd>`
+  }).join('');
+}
 
-const add = () => {
-  words = [{id: generateNextId(), word: $searchInput.value, mean: $searchResult.value }, ...words]
-  $searchInput.value = "";
-  $searchResult.value = "";
+document.addEventListener('DOMContentLoaded', getWords);
+
+const add = async (wordInput, meanInput)=> {
+  
+  const res = await fetch('/words', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({id: generateNextId(), word: wordInput, mean: meanInput, result: true})
+  });
+  words = await res.json();
   render();    
 }
 
@@ -31,8 +38,6 @@ const remove = () => {
   if(words.map(word => word.mean).find(element => element === $searchResult.value ))
   words = words.filter(word => word.mean !== $searchResult.value)
   
-  $searchInput.value = "";
-  $searchResult.value = "";
   render();    
 }
 
@@ -51,8 +56,13 @@ document.querySelector('.search-btn').onclick = e => {
 
 document.querySelector('.add-btn').onclick = () =>{
   if($searchInput.value === ""||$searchResult.value==="") return
-  add()
+  const wordInput = $searchInput.value;
+  const meanInput = $searchResult.value;
+  $searchInput.value = "";
+  $searchResult.value = "";
+  add(wordInput, meanInput);
 }
+
 document.querySelector('.search-result').onkeydown = e =>{
   if(e.key !== "Enter" ) return
   if($searchInput.value === ""||$searchResult.value==="") return
