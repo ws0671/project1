@@ -225,11 +225,8 @@ fieldset label {
   max-height: 80vh;
   margin: auto;
   padding: 20px;
-<<<<<<< HEAD
   background-color: rgba(255, 255, 0, 0.7);
-=======
-  background-color: rgba(76, 168, 216, 0.8);
->>>>>>> d967e0d436981389267476a18805f31243fa1e40
+  overflow: auto;
 }
 
 .test-result-heading {
