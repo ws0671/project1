@@ -2,6 +2,7 @@ let words = []
 const $wordList = document.querySelector(".words-list")
 const $searchInput = document.querySelector(".search-input")
 const $searchResult = document.querySelector(".search-result")
+
 words = [
     { id: 3, word: 'rabbit', mean: '토끼', result: true },
     { id: 2, word: 'lion', mean: '사자', result: true },
@@ -39,6 +40,8 @@ const generateNextId = () => {
 }
 
 
+
+
 document.querySelector('.search-btn').onclick = e => {
   if($searchInput.value === "") return
   if($searchInput.value === words.map(word => word.word).find(element => element === $searchInput.value))    
@@ -54,6 +57,7 @@ document.querySelector('.add-btn').onclick = () =>{
 }
 document.querySelector('.search-result').onkeydown = e =>{
   if(e.key !== "Enter" ) return
+  if($searchInput.value === ""||$searchResult.value==="") return
   add()
 }
 
