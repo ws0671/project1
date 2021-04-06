@@ -16,6 +16,9 @@ $testTab = document.querySelector('.tab.test');
 $wordsPage = document.querySelector('.words-page');
 $testPage = document.querySelector('.test-page');
 
+$testResultPopup = document.querySelector('.test-results-popup');
+$testResultSection = document.querySelector('.test-result-section');
+
 
 
 const getTestWords = () => {
@@ -82,14 +85,27 @@ const popupOutput = () => {
   $testAnswer.textContent = 'Sample Word';
   $testStartBtn.textContent = 'Start';
   if (testWordsIndex === 0) return;
-  console.log('팝업창');
+  $testResultPopup.innerHTML = wrongWords.map(
+    ({Quiz, yourAnswer, correctAnswer}) => 
+  `<li>
+  <em>Quiz: ${Quiz}</em>
+  <span>Your answer : ${yourAnswer}</span>
+  <span>Correct Answer : ${correctAnswer}</span>
+  </li>`).join('');
+  $testPage.classList.toggle('.active');
+  $
   testWordsIndex = 0;
   $testNum.textContent = `${testWordsIndex}/0`;  
   wrongWords = [];
 };
 
 const getWrongWord = () => {
-  wrongWords = [{id: +`${testWords[testWordsIndex].id}`, mean: `${$answerInput.value ? $answerInput.value : 'skip'}`}, ...wrongWords];
+  wrongWords = [
+    {Quiz: `${testWords[testWordsIndex].word}`, 
+    yourAnswer: `${$answerInput.value ? $answerInput.value : 'skip'}`, 
+    correctAnswer: `${testWords[testWordsIndex].mean}`}, 
+    ...wrongWords
+  ];
 };
 
 const skip = () => {
