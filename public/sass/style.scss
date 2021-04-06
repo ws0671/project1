@@ -1,17 +1,7 @@
 @import url(./normalize.css);
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
-
-$site_max_width: 960px;
-$font_color: #333;
-$word_theme_color: #8977AD;
-$word_theme_bgc: #e6e6fa;
-$test_theme_color: rgba(76, 168, 216, 1);
-$test_theme_bgc: rgba(76, 168, 216, 0.8);
-$font_family: Spoqa Han Sans Neo, sans-serif;
-$secondary_font_family: Georgia, 'Times New Roman', Times, serif;
-$font_size: 16px;
-$line_height: 1.5;
-$tab_height: 36px;
+@import "mixin";
+@import "variables";
 
 .reset-list {
   padding-left: 0;
@@ -45,8 +35,14 @@ button {
   color: #fff;
   width: 100px;
   height: 30px;
-  border-radius: 5px;
+  border-radius: 2px;
   box-shadow: 3px 3px #aaa;
+}
+
+button:active {
+  box-shadow: none;
+  opacity: 80%;
+  transform: translate(2px, 2px);
 }
 
 button:hover{
@@ -55,7 +51,6 @@ button:hover{
 }
 
 .container{
-  background-color: pink;
   color: $font_color;
   font-size: $font_size;
   font-family: $font_family;
@@ -92,6 +87,7 @@ button:hover{
   height: calc(100vh - #{$tab_height});
   max-width: $site_max_width;
 }
+
 .active {
   z-index: 1000;
 }
@@ -100,22 +96,42 @@ button:hover{
   background-color: #fff;
   border: 2px solid $word_theme_color;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  @include mobile(800px){
+    grid-template-columns: 1fr;
+  }
+  @include desktop(801px){
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .words-page button{
   background-color: $word_theme_color;
+  width: 25%;
 }
 .words-page label {
   display: inline-block;
 }
 .words-form {
-  grid-column-start: 2;
+  @include desktop(801px){
+    grid-column-start: 2;
+  }
   grid-row-start: 1;
 }
+
+.search-input, .search-result {
+  border: 1px solid $word_theme_color;
+  width: 70%;
+  padding: 5px;
+
+}
 .list-section {
-  grid-column-start: 1;
-  grid-row-start: 1;
+  @include desktop(801px){
+    grid-column-start: 1;
+    grid-row-start: 1;
+  }
+  @include mobile(800px){
+    grid-row-start: 2;
+  }
   margin: 10px;
   background-color: $word_theme_bgc;
 }
@@ -124,8 +140,11 @@ button:hover{
   margin: 10px 0 0 0;
 }
 .words-list {
-  text-align: center;
-  padding: 10px;
+  padding: 20px;
+  max-height: 60vh;
+  overflow: auto;
+  margin: 20px;
+  background-color: #fff;
 }
 
 .words-list > * {
@@ -145,13 +164,13 @@ button:hover{
 
 .clear-btn {
   position: relative;
-  left: 60%;
+  left: 70%;
 }
 
 // test 페이지
 .test-section {
   border: 2px solid $test_theme_color;
-  background-color: #fff;
+  background-color: $test_theme_bgc;
   height: calc(100vh - #{$tab_height});
 }
 .test-section > * {
@@ -188,11 +207,12 @@ button:hover{
 }
 fieldset label {
   font-family: $secondary_font_family;
-  font-size: 60px; //반응형일 때 조정할 것
+  font-size: 4em; //반응형일 때 조정할 것
 }
 .answer {
   margin: 10px;
-  border: 2px solid $test_theme_bgc;
+  border: 2px solid $test_theme_color;
+  background-color: #fff;
   width: 300px;
   height: 40px;
   text-align: center;
@@ -222,15 +242,14 @@ fieldset label {
   max-height: 80vh;
   margin: auto;
   padding: 20px;
-  background-color: $test_theme_bgc;
+  background-color: #fff;
+  overflow: auto;
 }
 
 .test-result-heading {
   text-align: center;
   font-family: $secondary_font_family;
-}
-.test-results-popup {
-  overflow: auto;
+  font-size: 2em;
 }
 
 .close-result-btn {
@@ -240,7 +259,7 @@ fieldset label {
 }
 
 .footer {
-  // background-color: lime;
+  background-color: lime;
   position: fixed;
   top : 100%; //숨겨두었으니 나중에 꺼내자.
   text-align: center;
