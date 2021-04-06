@@ -154,21 +154,19 @@ button:hover{
   background-color: #fff;
   height: calc(100vh - #{$tab_height});
 }
-.test-start-btn, .test-finish-btn {
+.test-section > * {
   position: absolute;
+}
+.test-start-btn, .test-finish-btn {
   background-color: $test_theme_color;
   bottom: 20px;
-}
-.test-result-heading {
-  text-align: center;
 }
 .test-start-btn {
   left: 30px;
 }
 .test-num {
-  position: absolute;
+  left: calc(50% - 12px);
   bottom: 20px;
-  display: block;
   text-align: center;
 }
 .test-finish-btn{
@@ -182,6 +180,21 @@ button:hover{
 .test-form fieldset {
   text-align: center;
 }
+fieldset label {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 60px;
+}
+
+.answer {
+  margin: 10px;
+  border: 2px solid $test_theme_bgc;
+  width: 300px;
+  height: 40px;
+  text-align: center;
+}
+
+
+// 팝업창
 .test-result-section {
   position: absolute;
   top: 0;
@@ -194,6 +207,9 @@ button:hover{
   padding: 20px;
   background-color: rgba(255, 255, 0, 0.7);
   z-index: -1;
+}
+.test-result-heading {
+  text-align: center;
 }
 .footer {
   // background-color: lime;

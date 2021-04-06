@@ -149,35 +149,27 @@ button:hover {
   height: calc(100vh - 36px);
 }
 
-.answer{
-  cursor: not-allowed;
+.test-section > * {
+  position: absolute;
 }
 
 .test-start-btn, .test-finish-btn {
-  position: absolute;
   background-color: #4ca8d8;
   bottom: 20px;
 }
 
-.test-result-heading {
-  text-align: center;
-}
-
 .test-start-btn {
   left: 30px;
-  cursor: pointer;
 }
 
 .test-num {
-  position: absolute;
+  left: calc(50% - 12px);
   bottom: 20px;
-  display: block;
   text-align: center;
 }
 
 .test-finish-btn {
   right: 30px;
-  cursor: not-allowed;
 }
 
 .test-form {
@@ -189,16 +181,18 @@ button:hover {
 .test-form fieldset {
   text-align: center;
 }
-/* 블러처리 */
-.overlay {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-  z-index: 999;
-  display: none;
+
+fieldset label {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 60px;
+}
+
+.answer {
+  margin: 10px;
+  border: 2px solid rgba(76, 168, 216, 0.7);
+  width: 300px;
+  height: 40px;
+  text-align: center;
 }
 
 .test-result-section {
@@ -213,6 +207,10 @@ button:hover {
   padding: 20px;
   background-color: rgba(255, 255, 0, 0.7);
   z-index: -1;
+}
+
+.test-result-heading {
+  text-align: center;
 }
 
 .footer {
