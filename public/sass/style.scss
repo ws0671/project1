@@ -94,9 +94,11 @@ button:hover{
 }
 
 .words-page {
-  background-color: #fff;
+  background-color: $word_theme_bgc;
   border: 2px solid $word_theme_color;
   display: grid;
+  grid-column-gap: 3vw;
+  padding: 2vw;
   @include mobile(800px){
     grid-template-columns: 1fr;
   }
@@ -107,7 +109,6 @@ button:hover{
 
 .words-page button{
   background-color: $word_theme_color;
-  width: 25%;
 }
 .words-page label {
   display: inline-block;
@@ -117,13 +118,27 @@ button:hover{
     grid-column-start: 2;
   }
   grid-row-start: 1;
+  // background-color: salmon;
 }
+
 
 .search-input, .search-result {
   border: 1px solid $word_theme_color;
-  width: 70%;
+  background-color: #fff;
   padding: 5px;
-
+}
+.search-input {
+  width: 70%;
+}
+.search-btn {
+  width: 28%;
+}
+.search-result {
+  width: 100%;
+}
+.edit-form > button {
+  margin-top: 1vw;
+  width: 49%;
 }
 .list-section {
   @include desktop(801px){
@@ -133,8 +148,8 @@ button:hover{
   @include mobile(800px){
     grid-row-start: 2;
   }
-  margin: 10px;
-  background-color: $word_theme_bgc;
+  background-color: #fff;
+  
 }
 .list-heading {
   text-align: center;
@@ -145,7 +160,7 @@ button:hover{
   max-height: 60vh;
   overflow: auto;
   margin: 20px;
-  background-color: #fff;
+  background-color: $word_theme_bgc;
 }
 
 .words-list > * {
