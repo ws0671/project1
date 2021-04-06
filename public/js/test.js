@@ -18,6 +18,8 @@ $testPage = document.querySelector('.test-page');
 
 $testResultPopup = document.querySelector('.test-results-popup');
 $testResultSection = document.querySelector('.test-result-section');
+$PopupCloseBtn = document.querySelector('.close-result-btn');
+$overlay = document.querySelector('.overlay');
 
 
 
@@ -92,8 +94,9 @@ const popupOutput = () => {
   <span>Your answer : ${yourAnswer}</span>
   <span>Correct Answer : ${correctAnswer}</span>
   </li>`).join('');
+  $overlay.style.display = 'block';
   $testPage.classList.toggle('.active');
-  $
+  $testResultSection.classList.toggle('active');
   testWordsIndex = 0;
   $testNum.textContent = `${testWordsIndex}/0`;  
   wrongWords = [];
@@ -142,3 +145,9 @@ $testTab.onclick = () => {
   $testPage.classList.toggle('active');
   $wordsPage.classList.toggle('active');
 };
+
+$PopupCloseBtn.onclick = () => {
+  $testPage.classList.toggle('active');
+  $testResultSection.classList.toggle('active');
+  $overlay.style.display = 'none';
+}
