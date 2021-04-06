@@ -215,6 +215,7 @@ fieldset label {
 }
 
 .test-result-section {
+  display: none;
   position: absolute;
   top: 10vh;
   left: 0;
