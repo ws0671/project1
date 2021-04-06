@@ -47,21 +47,6 @@ const getTestWords = () => {
   testWordsNum = testWords.length;
 };
 
-const changeDisabled = () => {
-  $testFinishBtn.disabled = !testRunning;
-  $answerInput.disabled = !testRunning;
-  $wordsTab.disabled = testRunning;
-  if (testRunning) {
-    $wordsTab.style.cursor = 'not-allowed';
-    $answerInput.style.cursor = 'auto';
-    $testFinishBtn.style.cursor = 'pointer';
-  } else {
-    $wordsTab.style.cursor = 'pointer';
-    $answerInput.style.cursor = 'not-allowed';
-    $testFinishBtn.style.cursor = 'not-allowed';
-  };
-};
-
 let testRunning = false;
 
 const start = () => {
@@ -81,27 +66,6 @@ const checkOfMean = () => {
   setTimeout(start, 500);
 };
 
-const popupOutput = () => {
-  testRunning = false;
-  changeDisabled();
-  $testAnswer.textContent = 'Sample Word';
-  $testStartBtn.textContent = 'Start';
-  if (testWordsIndex === 0) return;
-  $testResultPopup.innerHTML = wrongWords.map(
-    ({Quiz, yourAnswer, correctAnswer}) => 
-  `<li>
-  <em>Quiz: ${Quiz}</em>
-  <span>Your answer : ${yourAnswer}</span>
-  <span>Correct Answer : ${correctAnswer}</span>
-  </li>`).join('');
-  $overlay.style.display = 'block';
-  $testPage.classList.toggle('.active');
-  $testResultSection.classList.toggle('active');
-  testWordsIndex = 0;
-  $testNum.textContent = `${testWordsIndex}/0`;  
-  wrongWords = [];
-};
-
 const getWrongWord = () => {
   wrongWords = [
     {Quiz: `${testWords[testWordsIndex].word}`, 
@@ -117,6 +81,43 @@ const skip = () => {
   start();
 };
 
+const popupOutput = () => {
+  testRunning = false;
+  changeDisabled();
+  $testAnswer.textContent = 'Sample Word';
+  $testStartBtn.textContent = 'Start';
+  testWordsIndex = 0;
+  $testNum.textContent = `${testWordsIndex}/0`;  
+  if (wrongWords.length === 0) return;
+  $testResultPopup.innerHTML = wrongWords.map(
+    ({Quiz, yourAnswer, correctAnswer}) => 
+    `<li>
+    <em>Quiz: ${Quiz}</em>
+    <span>Your answer : ${yourAnswer}</span>
+    <span>Correct Answer : ${correctAnswer}</span>
+    </li>`).join('');
+    $overlay.style.display = 'block';
+    $testPage.classList.toggle('active');
+    $testResultSection.classList.toggle('active');
+    wrongWords = [];
+  };
+  
+const changeDisabled = () => {
+  $testFinishBtn.disabled = !testRunning;
+  $answerInput.disabled = !testRunning;
+  $wordsTab.disabled = testRunning;
+  if (testRunning) {
+    $wordsTab.style.cursor = 'not-allowed';
+    $answerInput.style.cursor = 'auto';
+    $testFinishBtn.style.cursor = 'pointer';
+  } else {
+    $wordsTab.style.cursor = 'pointer';
+    $answerInput.style.cursor = 'not-allowed';
+    $testFinishBtn.style.cursor = 'not-allowed';
+  };
+};
+  
+  
 $testStartBtn.onclick = e => {
   if (e.target.textContent === 'skip') return skip();
   testRunning = true;
@@ -150,4 +151,4 @@ $PopupCloseBtn.onclick = () => {
   $testPage.classList.toggle('active');
   $testResultSection.classList.toggle('active');
   $overlay.style.display = 'none';
-}
+};
