@@ -8,14 +8,14 @@ const $searchResult = document.querySelector(".search-result")
 const getWords = async () => {
   const res = await fetch('/words');
   words = await res.json();
-  console.log(words)
   render();
 }
 
 const render = () => {
   $wordList.innerHTML = words.map(({id,word,mean}) => {
     return `<dt id="${id}">${word}</dt>
-    <dd id="ck-${id}">${mean}</dd>`
+    <dd id="ck-${id}">${mean}</dd>
+    <dd>X</dd>`
   }).join('');
 }
 
@@ -33,9 +33,7 @@ const add = async (wordInput, meanInput)=> {
 }
 
 const remove = () => {
-  if(words.map(word => word.word).find(element => element === $searchInput.value ))
   words = words.filter(word => word.word !== $searchInput.value)
-  if(words.map(word => word.mean).find(element => element === $searchResult.value ))
   words = words.filter(word => word.mean !== $searchResult.value)
   
   render();    
@@ -69,7 +67,8 @@ document.querySelector('.search-result').onkeydown = e =>{
   add()
 }
 
-document.querySelector('.delete-btn').onclick = () => {
+document.querySelector('.delete-btn').onclick = e => {
+  if (words.map(word => word.mean).find(element => element !== $searchResult.value || $searchResult.value)) return
   remove()
 }
 
