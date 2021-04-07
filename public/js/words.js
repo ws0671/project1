@@ -76,13 +76,8 @@ document.querySelector('.add-btn').onclick = () =>{
   add(wordInput, meanInput);
 }
 
-document.querySelector('.search-result').onkeydown = e =>{
-  if(e.key !== "Enter" ) return
-  if(!$searchInput.value === "" || $searchResult.value==="") return
-  add()
-}
 
-document.querySelector('.words-list').onclick = e => {
+$wordList.onclick = e => {
   if(!e.target.classList.contains('remove-btn')) return;
   const id = e.target.parentNode.id
   remove(id);
@@ -92,3 +87,10 @@ document.querySelector('.clear-btn').onclick = () => {
   clear();
 }
 
+$searchInput.onkeydown = e =>{
+  if(e.key === "Enter" ) $searchResult.focus()
+}
+
+$searchResult.onkeydown = e =>{
+  if(e.key === "Enter" ) document.querySelector('.add-btn').focus()
+}
