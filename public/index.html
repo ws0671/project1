@@ -19,28 +19,17 @@
       </ul>
       <!-- words-page 랑 test-page 중 tab에서 클릭하면 클래스명에 active가 생기게끔 js처리 -->
       <div class="words-page active" role="tabpanel" id="wordsPage" aria-labelledby="tabWords">
-        <form class="words-form">
-          <fieldset class="search-form">
-            <legend>Search Word</legend>
-            <input type="text" class="search-input" id="searchInput">
-            <label for="searchInput"></label>
-            <button class="search-btn">Search</button>
-          </fieldset>
-          <fieldset class="edit-form">
-            <legend>Edit or Add Meaning</legend>
-            <input type="text" class="search-result" id="editInput">
-            <label for="editInput"></label>
-            <button class="add-btn">Add</button> 
-            <!-- 이미 있는 결과값이면 edit으로 바뀌게끔 js처리 -->
-            <button class="delete-btn">Delete</button>
-            <!-- 결과값이 없는 경우엔 delete 버튼 disabled로 js처리-->
-          </fieldset>
-        </form>
+        <section class="search-section">            
+          <h3 class="search-section-heading">Search or Add Words</h3>
+          <input type="text" class="search-input" aria-label="Search">
+          <button class="search-btn">Search</button>            
+          <input type="text" class="search-result" aria-label="AddWord">
+          <button class="add-btn">Add</button> 
+        </section>
         <section class="list-section">
           <h3 class="list-heading">Words List</h3>
           <dl class="words-list reset-list">
             <!-- js로 데이터 동적 생성해야하는 부분 -->
-            
           </dl>
           <button class="clear-btn">Clear</button>
         </section>
@@ -52,7 +41,7 @@
           <form class="test-form">
             <fieldset>
               <legend>Test</legend>
-              <label for="testAnswer">Sample Word</label>
+              <label class="test-word" for="testAnswer">Sample Word</label>
               <input class="answer" type="text" placeholder="Type Your Answer" id="testAnswer" disabled>
             </fieldset>
           </form>
