@@ -118,16 +118,17 @@ button:hover{
 .search-section {
   width: 50%;
   display: grid;
-  grid-template-areas: "searchHeading searchHeading searchHeading"
+  padding: 2vw;
+  grid-template-areas: ". . ."
+                       "searchHeading searchHeading searchHeading"
                        "searchInput searchInput searchButton"
-                       "searchResult searchResult addButton";
+                       "searchResult searchResult addButton"
+                       ". . .";
   min-width: 400px;
-  // @include desktop(801px){
-  //   grid-column-start: 2;
-  // }
-  // grid-row-start: 1;
-  // // background-color: salmon;
+  row-gap: 20px;
+
 }
+
 .search-section-heading {
   grid-area: searchHeading;
   text-align: center;
@@ -151,13 +152,6 @@ button:hover{
   grid-area: addButton;
 }
 .list-section {
-  // @include desktop(801px){
-  //   grid-column-start: 1;
-  //   grid-row-start: 1;
-  // }
-  // @include mobile(800px){
-  //   grid-row-start: 2;
-  // }
   width: 50%;
   background-color: #fff;
   min-width: 400px;
