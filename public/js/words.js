@@ -13,7 +13,7 @@ const getWords = async () => {
 
 const render = () => {
   $wordList.innerHTML = words.map(({id,word,mean}) => {
-    return `<dt id="${id}">${word}<button class="remove-btn">X</button></dt>
+    return `<dt id="${id}"><span>${word}</span><button type="button" class="remove-btn" aria-label="delete">×</button></dt>
     <dd id="ck-${id}">${mean}</dd>
     `    
   }).join('');
@@ -32,10 +32,27 @@ const add = async (wordInput, meanInput)=> {
   render();    
 }
 
-const remove = id => {
-  words = words.filter(word => word.id !== +id);
+const remove = async id => {
+  const res = await fetch(`/words/${id}`, {method:'DELETE'});
+  words = await res.json();
   render();    
-}
+};
+
+const clear = async () => {
+  const res = await fetch('/words/clear', {method: 'DELETE'});
+  words = await res.json();
+  render();
+};
+
+const search = async searchInputValue => {
+  const res = await fetch('/words/search', {
+    method: 'PATCH',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({value: `${searchInputValue}`})
+  });
+  $searchResult.value = await res.text();
+  render();
+};
 
 const generateNextId = () => {
   return Math.max(...words.map(word => word.id), 0) + 1
@@ -44,7 +61,7 @@ const generateNextId = () => {
 document.querySelector('.search-btn').onclick = e => {
   if($searchInput.value === "") return
   if($searchInput.value === words.map(word => word.word).find(element => element === $searchInput.value))    
-  return $searchResult.value = words.filter(({ word }) => word === $searchInput.value)[0].mean
+  return search($searchInput.value);
   // ,document.querySelector('.add-btn').textContent = "Edit"
   // document.querySelector('.delete-btn').textContent = "Disabled"
   alert("단어가 없습니다")
@@ -61,7 +78,7 @@ document.querySelector('.add-btn').onclick = () =>{
 
 document.querySelector('.search-result').onkeydown = e =>{
   if(e.key !== "Enter" ) return
-  if($searchInput.value === ""||$searchResult.value==="") return
+  if(!$searchInput.value === "" || $searchResult.value==="") return
   add()
 }
 
@@ -72,7 +89,6 @@ document.querySelector('.words-list').onclick = e => {
 }
 
 document.querySelector('.clear-btn').onclick = () => {
-  words = []
-  render();
+  clear();
 }
 
