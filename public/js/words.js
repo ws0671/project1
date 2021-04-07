@@ -13,9 +13,9 @@ const getWords = async () => {
 
 const render = () => {
   $wordList.innerHTML = words.map(({id,word,mean}) => {
-    return `<dt id="${id}">${word}</dt>
+    return `<dt id="${id}"><span>${word}</span><button type="button" class="remove-btn" aria-label="delete">×</button></dt>
     <dd id="ck-${id}">${mean}</dd>
-    <dd>X</dd>`
+    `    
   }).join('');
 }
 
@@ -32,12 +32,27 @@ const add = async (wordInput, meanInput)=> {
   render();    
 }
 
-const remove = () => {
-  words = words.filter(word => word.word !== $searchInput.value)
-  words = words.filter(word => word.mean !== $searchResult.value)
-  
+const remove = async id => {
+  const res = await fetch(`/words/${id}`, {method:'DELETE'});
+  words = await res.json();
   render();    
-}
+};
+
+const clear = async () => {
+  const res = await fetch('/words/clear', {method: 'DELETE'});
+  words = await res.json();
+  render();
+};
+
+const search = async searchInputValue => {
+  const res = await fetch('/words/search', {
+    method: 'PATCH',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({value: `${searchInputValue}`})
+  });
+  $searchResult.value = await res.text();
+  render();
+};
 
 const generateNextId = () => {
   return Math.max(...words.map(word => word.id), 0) + 1
@@ -46,7 +61,7 @@ const generateNextId = () => {
 document.querySelector('.search-btn').onclick = e => {
   if($searchInput.value === "") return
   if($searchInput.value === words.map(word => word.word).find(element => element === $searchInput.value))    
-  return $searchResult.value = words.filter(({ word }) => word === $searchInput.value)[0].mean
+  return search($searchInput.value);
   // ,document.querySelector('.add-btn').textContent = "Edit"
   // document.querySelector('.delete-btn').textContent = "Disabled"
   alert("단어가 없습니다")
@@ -63,17 +78,17 @@ document.querySelector('.add-btn').onclick = () =>{
 
 document.querySelector('.search-result').onkeydown = e =>{
   if(e.key !== "Enter" ) return
-  if($searchInput.value === ""||$searchResult.value==="") return
+  if(!$searchInput.value === "" || $searchResult.value==="") return
   add()
 }
 
-document.querySelector('.delete-btn').onclick = e => {
-  if (words.map(word => word.mean).find(element => element !== $searchResult.value || $searchResult.value)) return
-  remove()
+document.querySelector('.words-list').onclick = e => {
+  if(!e.target.classList.contains('remove-btn')) return;
+  const id = e.target.parentNode.id
+  remove(id);
 }
 
 document.querySelector('.clear-btn').onclick = () => {
-  words = []
-  render();
+  clear();
 }
 
