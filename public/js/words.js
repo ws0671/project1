@@ -15,7 +15,7 @@ const render = () => {
   $wordList.innerHTML = words.map(({id,word,mean}) => {
     return `<dt id="${id}">${word}</dt>
     <dd id="ck-${id}">${mean}</dd>
-    <dd>X</dd>`
+    <button class="remove-btn">X</button>`    
   }).join('');
 }
 
@@ -33,8 +33,6 @@ const add = async (wordInput, meanInput)=> {
 }
 
 const remove = () => {
-  words = words.filter(word => word.word !== $searchInput.value)
-  words = words.filter(word => word.mean !== $searchResult.value)
   
   render();    
 }
@@ -67,9 +65,9 @@ document.querySelector('.search-result').onkeydown = e =>{
   add()
 }
 
-document.querySelector('.delete-btn').onclick = e => {
-  if (words.map(word => word.mean).find(element => element !== $searchResult.value || $searchResult.value)) return
-  remove()
+document.querySelector('.words-list').onclick = e => {
+  if(!e.target.classList.contains('remove-btn')) return;
+  console.log(e.target);
 }
 
 document.querySelector('.clear-btn').onclick = () => {
