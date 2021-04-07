@@ -16,11 +16,30 @@ app.get('/words', (req, res) => {
   res.send(words);
 });
 
+app.patch('/words/search', (req, res) => {
+  const searchResult = words.filter(({ word }) => word === `${req.body.value}`)[0].mean;
+  res.send(searchResult)
+});
+
 app.listen(9000, () => {
-  console.log('hi')
-})
+  console.log('hi');
+});
 
 app.post('/words', (req, res) => {
   words = [req.body, ...words];
   res.send(words)
-})
+});
+
+app.delete('/words/clear', (req, res) => {
+  words = [];
+  res.send(words);
+});
+
+app.delete('/words/:id', (req, res) => {
+  words = words.filter(word => word.id !== +req.params.id);
+  res.send(words);
+});
+
+
+
+
