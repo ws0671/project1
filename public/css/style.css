@@ -95,19 +95,10 @@ button:hover {
 .words-page {
   background-color: #e6e6fa;
   border: 2px solid #8977AD;
-  display: grid;
-  grid-column-gap: 3vw;
-  padding: 2vw;
-}
-@media screen and (max-width: 800px) {
-  .words-page {
-    grid-template-columns: 1fr;
-  }
-}
-@media screen and (min-width: 801px) {
-  .words-page {
-    grid-template-columns: 1fr 1fr;
-  }
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .words-page button {
@@ -118,13 +109,16 @@ button:hover {
   display: inline-block;
 }
 
-.words-form {
-  grid-row-start: 1;
+.search-section {
+  width: 50%;
+  display: grid;
+  grid-template-areas: "searchHeading searchHeading searchHeading" "searchInput searchInput searchButton" "searchResult searchResult addButton";
+  min-width: 400px;
 }
-@media screen and (min-width: 801px) {
-  .words-form {
-    grid-column-start: 2;
-  }
+
+.search-section-heading {
+  grid-area: searchHeading;
+  text-align: center;
 }
 
 .search-input, .search-result {
@@ -134,35 +128,26 @@ button:hover {
 }
 
 .search-input {
-  width: 70%;
+  grid-area: searchInput;
 }
 
 .search-btn {
-  width: 28%;
+  grid-area: searchButton;
 }
 
 .search-result {
-  width: 100%;
+  grid-area: searchResult;
 }
 
-.edit-form > button {
-  margin-top: 1vw;
-  width: 49%;
+.add-btn {
+  grid-area: addButton;
 }
 
 .list-section {
+  width: 50%;
   background-color: #fff;
-}
-@media screen and (min-width: 801px) {
-  .list-section {
-    grid-column-start: 1;
-    grid-row-start: 1;
-  }
-}
-@media screen and (max-width: 800px) {
-  .list-section {
-    grid-row-start: 2;
-  }
+  min-width: 400px;
+  height: 90vh;
 }
 
 .list-heading {
@@ -244,7 +229,7 @@ button:hover {
   text-align: center;
 }
 
-fieldset label {
+.test-word {
   font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 4em;
 }
@@ -281,7 +266,7 @@ fieldset label {
   max-height: 80vh;
   margin: auto;
   padding: 20px;
-  background-color: rgba(255, 255, 0, 0.7);
+  background-color: #fff;
   overflow: auto;
 }
 
