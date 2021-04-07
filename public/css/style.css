@@ -171,10 +171,23 @@ button:hover {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  padding: 0.7rem 1rem;
 }
 
 .words-list > dt {
   width: 30%;
+  position: relative;
+}
+
+.words-list .remove-btn {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  position: absolute;
+  right: 10%;
+  background-color: rgba(0, 0, 0, 0.15);
+  color: rgba(0, 0, 0, 0.5);
+  box-shadow: none;
 }
 
 .words-list > dd {
@@ -248,6 +261,7 @@ button:hover {
 }
 
 .test-result-section {
+  display: none;
   position: absolute;
   top: 10vh;
   left: 0;
