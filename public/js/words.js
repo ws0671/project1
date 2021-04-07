@@ -29,6 +29,7 @@ const add = async (wordInput, meanInput)=> {
     body: JSON.stringify({id: generateNextId(), word: wordInput, mean: meanInput, result: true})
   });
   words = await res.json();
+  $searchInput.focus();
   render();    
 }
 
@@ -74,6 +75,7 @@ document.querySelector('.add-btn').onclick = () =>{
   $searchInput.value = "";
   $searchResult.value = "";
   add(wordInput, meanInput);
+
 }
 
 
