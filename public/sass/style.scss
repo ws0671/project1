@@ -11,6 +11,9 @@
 body *{
   box-sizing: border-box;
 }
+h3 {
+  text-align: center;
+}
 
 fieldset {
   border: none;
@@ -26,16 +29,12 @@ legend, .a11y-hidden {
   clip-path: polygon(0 0, 0 0, 0 0);
 }
 
-label {
-  display: block;
-}
-
 button {
   border: none;
   color: #fff;
   width: 100px;
   height: 30px;
-  border-radius: 2px;
+  border-radius: 15px;
   box-shadow: 3px 3px #aaa;
   outline: none;
 }
@@ -100,13 +99,6 @@ button:hover{
   flex-direction: row-reverse;
   flex-wrap: wrap;
   justify-content: space-around;
-  // grid-column-gap: 3vw;
-  // @include mobile(800px){
-  //   grid-template-columns: 1fr;
-  // }
-  // @include desktop(801px){
-  //   grid-template-columns: 1fr 1fr;
-  // }
 }
 
 .words-page button{
@@ -119,47 +111,38 @@ button:hover{
   width: 50%;
   display: grid;
   padding: 2vw;
-  grid-template-areas: ". . ."
-                       "searchHeading searchHeading searchHeading"
+  grid-template-areas: "searchHeading searchHeading searchHeading"
                        "searchInput searchInput searchButton"
                        "searchResult searchResult addButton"
+                       ". . ."
                        ". . .";
   min-width: 400px;
   row-gap: 20px;
-
+  align-items: center;
+  justify-content: stretch;
 }
 
-.search-section-heading {
-  grid-area: searchHeading;
-  text-align: center;
-}
+.search-section-heading { grid-area: searchHeading }
+.search-input { grid-area: searchInput }
+.search-btn { grid-area: searchButton }
+.search-result { grid-area: searchResult }
+.add-btn { grid-area: addButton }
 
 .search-input, .search-result {
   border: 1px solid $word_theme_color;
   background-color: #fff;
   padding: 5px;
+  margin: 0 20px;
 }
-.search-input {
-  grid-area: searchInput;
-}
-.search-btn {
-  grid-area: searchButton;
-}
-.search-result {
-  grid-area: searchResult;
-}
-.add-btn {
-  grid-area: addButton;
+
+.search-btn, .add-btn {
+  width: 100%;
 }
 .list-section {
   width: 50%;
   background-color: #fff;
   min-width: 400px;
   height: 90vh;
-}
-.list-heading {
-  text-align: center;
-  margin: 10px 0 0 0;
 }
 .words-list {
   padding: 20px;
@@ -174,11 +157,27 @@ button:hover{
   white-space: nowrap; 
   text-overflow: ellipsis; 
   overflow: hidden;
+  padding: 0.7rem 1rem;
+
 }
 
 .words-list > dt {
   width: 30%;
-};
+  position: relative;
+}
+
+.words-list .remove-btn {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  position: absolute;
+  right: 10%;
+  background-color: rgba(0, 0, 0, 0.15);
+  color: rgba(0,0,0,0.5);
+  box-shadow: none;
+
+}
+
 .words-list > dd {
   margin: 0;
   width: 68%;
@@ -201,7 +200,6 @@ button:hover{
 .answer{
   cursor: not-allowed;
 }
-
 .test-start-btn, .test-finish-btn {
   background-color: $test_theme_color;
   bottom: 20px;
@@ -228,6 +226,7 @@ button:hover{
   text-align: center;
 }
 .test-word {
+  display: block;
   font-family: $secondary_font_family;
   font-size: 4em; //반응형일 때 조정할 것
 }
@@ -239,18 +238,6 @@ button:hover{
   height: 40px;
   text-align: center;
 }
-/* 블러처리 */
-.overlay {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 999;
-  display: none;
-  backdrop-filter: blur(2px);
-}
-
 
 // 팝업창
 .test-result-section {
@@ -259,23 +246,23 @@ button:hover{
   top: 10vh;
   left: 0;
   right: 0;
-  text-align: center;
   width: 50vw;
   max-height: 80vh;
   margin: auto;
   padding: 20px;
   background-color: #fff;
   overflow: auto;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 .test-result-heading {
-  text-align: center;
   font-family: $secondary_font_family;
   font-size: 2em;
 }
 
 .close-result-btn {
-  box-shadow: none;
   background-color: #ccc;
   color: #333
 }
@@ -286,3 +273,16 @@ button:hover{
   top : 100%; //숨겨두었으니 나중에 꺼내자.
   text-align: center;
 }
+/* 블러처리 */
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(1px);
+}
+
