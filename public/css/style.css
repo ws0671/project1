@@ -11,6 +11,10 @@ body * {
   box-sizing: border-box;
 }
 
+h3 {
+  text-align: center;
+}
+
 fieldset {
   border: none;
 }
@@ -25,16 +29,12 @@ legend, .a11y-hidden {
   clip-path: polygon(0 0, 0 0, 0 0);
 }
 
-label {
-  display: block;
-}
-
 button {
   border: none;
   color: #fff;
   width: 100px;
   height: 30px;
-  border-radius: 2px;
+  border-radius: 15px;
   box-shadow: 3px 3px #aaa;
   outline: none;
 }
@@ -113,20 +113,15 @@ button:hover {
   width: 50%;
   display: grid;
   padding: 2vw;
-  grid-template-areas: ". . ." "searchHeading searchHeading searchHeading" "searchInput searchInput searchButton" "searchResult searchResult addButton" ". . .";
+  grid-template-areas: "searchHeading searchHeading searchHeading" "searchInput searchInput searchButton" "searchResult searchResult addButton" ". . ." ". . .";
   min-width: 400px;
   row-gap: 20px;
+  align-items: center;
+  justify-content: stretch;
 }
 
 .search-section-heading {
   grid-area: searchHeading;
-  text-align: center;
-}
-
-.search-input, .search-result {
-  border: 1px solid #8977AD;
-  background-color: #fff;
-  padding: 5px;
 }
 
 .search-input {
@@ -145,16 +140,22 @@ button:hover {
   grid-area: addButton;
 }
 
+.search-input, .search-result {
+  border: 1px solid #8977AD;
+  background-color: #fff;
+  padding: 5px;
+  margin: 0 20px;
+}
+
+.search-btn, .add-btn {
+  width: 100%;
+}
+
 .list-section {
   width: 50%;
   background-color: #fff;
   min-width: 400px;
   height: 90vh;
-}
-
-.list-heading {
-  text-align: center;
-  margin: 10px 0 0 0;
 }
 
 .words-list {
@@ -232,6 +233,7 @@ button:hover {
 }
 
 .test-word {
+  display: block;
   font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 4em;
 }
@@ -245,41 +247,28 @@ button:hover {
   text-align: center;
 }
 
-/* 블러처리 */
-.overlay {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 999;
-  display: none;
-  backdrop-filter: blur(2px);
-}
-
 .test-result-section {
-  display: none;
   position: absolute;
   top: 10vh;
   left: 0;
   right: 0;
-  text-align: center;
   width: 50vw;
   max-height: 80vh;
   margin: auto;
   padding: 20px;
   background-color: #fff;
   overflow: auto;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .test-result-heading {
-  text-align: center;
   font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 2em;
 }
 
 .close-result-btn {
-  box-shadow: none;
   background-color: #ccc;
   color: #333;
 }
@@ -289,6 +278,19 @@ button:hover {
   position: fixed;
   top: 100%;
   text-align: center;
+}
+
+/* 블러처리 */
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(1px);
 }
 
 /*# sourceMappingURL=style.css.map */
