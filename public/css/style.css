@@ -103,7 +103,6 @@ legend, .a11y-hidden {
 }
 
 .search-section {
-  width: 45%;
   display: grid;
   margin: 2.5%;
   grid-template-areas: "searchHeading searchHeading searchHeading" "searchInput searchInput searchButton" "searchResult searchResult addButton" ". . .";
@@ -111,6 +110,16 @@ legend, .a11y-hidden {
   row-gap: 20px;
   align-items: center;
   justify-content: stretch;
+}
+@media screen and (max-width: 714px) {
+  .search-section {
+    width: 80%;
+  }
+}
+@media screen and (min-width: 715px) {
+  .search-section {
+    width: 45%;
+  }
 }
 @media screen and (max-width: 714px) {
   .search-section {
@@ -158,14 +167,22 @@ legend, .a11y-hidden {
 }
 
 .list-section {
-  width: 45%;
   min-width: 300px;
   margin: 2.5%;
   background-color: #fff;
-  height: calc(100%-4vh);
   box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.2);
   overflow: auto;
   padding: 20px 0;
+}
+@media screen and (max-width: 714px) {
+  .list-section {
+    width: 80%;
+  }
+}
+@media screen and (min-width: 715px) {
+  .list-section {
+    width: 45%;
+  }
 }
 
 .words-list {
