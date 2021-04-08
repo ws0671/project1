@@ -278,7 +278,7 @@ fieldset {
   margin: auto;
   padding: 20px;
   background-color: #fff;
-  overflow: auto;
+  overflow: hidden;
   text-align: center;
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -297,12 +297,19 @@ fieldset {
 .test-result-heading {
   font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 2em;
+  margin: 0;
 }
 
-.test-results-popup::before {
-  content: "틀린 문제를 확인하세요";
-  display: block;
-  padding-bottom: 20px;
+.test-score {
+  font-size: 2em;
+  margin: 0.2em;
+}
+
+.test-results-popup {
+  height: 75%;
+  overflow: auto;
+  background-color: #beedfd;
+  padding: 10px 0;
 }
 
 .test-results-popup > li > * {
@@ -322,14 +329,18 @@ fieldset {
 }
 
 .close-result-btn {
-  background-color: #ccc;
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   box-shadow: none;
   cursor: pointer;
-  color: #333;
+  color: transparent;
+  overflow: hidden;
   position: absolute;
-  bottom: 20px;
+  top: 20px;
+  right: 20px;
+  background-image: url(../css/close-btn.png);
+  background-position: center;
+  background-size: cover;
 }
 
 /* 블러처리 */
