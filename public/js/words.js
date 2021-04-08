@@ -2,6 +2,9 @@ let words = []
 const $wordList = document.querySelector(".words-list")
 const $searchInput = document.querySelector(".search-input")
 const $searchResult = document.querySelector(".search-result")
+const $addBtn = document.querySelector('.add-btn')
+const $clearBtn =document.querySelector('.clear-btn')
+const $searchBtn = document.querySelector('.search-btn')
 
 const getWords = async () => {
   const res = await fetch('/words');
@@ -58,16 +61,15 @@ const generateNextId = () => {
   return Math.max(...words.map(word => word.id), 0) + 1
 }
 
-document.querySelector('.search-btn').onclick = e => {
+//이벤트 핸들러
+$searchBtn.onclick = e => {
   if($searchInput.value === "") return
   if($searchInput.value === words.map(({word}) => word).find(element => element === $searchInput.value))    
   return search($searchInput.value);
-  // ,document.querySelector('.add-btn').textContent = "Edit"
-  // document.querySelector('.delete-btn').textContent = "Disabled"
-  alert("단어가 없습니다")
+  alert("단어가 없습니다");
 }
 
-document.querySelector('.add-btn').onclick = () =>{
+$addBtn.onclick = () =>{
   if($searchInput.value === ""||$searchResult.value==="") return
   const wordInput = $searchInput.value;
   const meanInput = $searchResult.value;
@@ -83,7 +85,7 @@ $wordList.onclick = e => {
   remove(id);
 }
 
-document.querySelector('.clear-btn').onclick = () => {
+$clearBtn.onclick = () => {
   clear();
 }
 
@@ -92,6 +94,6 @@ $searchInput.onkeydown = e =>{
 }
 
 $searchResult.onkeydown = e =>{
-  if(e.key === "Enter" ) document.querySelector('.add-btn').focus()
+  if(e.key === "Enter" ) $addBtn.focus()
 }
 
