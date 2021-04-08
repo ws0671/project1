@@ -3,6 +3,7 @@ let wrongWords = [];
 let correctWords = [];
 let testWordsNum = 0;
 let testWordsIndex = 0;
+let testRunning = false;
 
 //입출력
 const $testAnswer = document.querySelector('.test-form > fieldset > label');
@@ -10,7 +11,7 @@ const $testNum = document.querySelector('.test-num');
 const $answerInput = document.querySelector('.answer');
 
 //시작, 종료버튼
-const $testStartBtn = document.querySelector('.test-start-btn');
+const $testStartAndSkipBtn = document.querySelector('.test-start-btn');
 const $testFinishBtn = document.querySelector('.test-finish-btn');
 
 //탭 이벤트 
@@ -43,7 +44,6 @@ const getTestWords = async () => {
   testWordsNum = testWords.length;
 };
 
-let testRunning = false;
 
 const start = () => {
   if (testWordsIndex === testWords.length) return popupOutput();
@@ -51,7 +51,7 @@ const start = () => {
   $testNum.textContent = `${testWordsIndex + 1}/${testWordsNum}`;
 };
 
-const checkOfMean = () => {
+const checkAnswer = () => {
   if ($answerInput.value === testWords[testWordsIndex].mean){
     $testAnswer.textContent = '맞았습니다';
     getCorrectWord();
@@ -87,16 +87,16 @@ const skip = () => {
 
 const popupOutput = () => {
   testRunning = false;
-  changeDisabled();
+  changeDisabledAndCursor();
   $testAnswer.textContent = 'Sample Word';
-  $testStartBtn.textContent = 'Start';
+  $testStartAndSkipBtn.textContent = 'Start';
   testWordsIndex = 0;
   $testNum.textContent = `${testWordsIndex}/0`;  
   if (wrongWords.length === 0 && correctWords.length === 0) return;
   $testResultPopup.innerHTML = wrongWords.map(
     ({Quiz, yourAnswer, correctAnswer}) => 
     `<li>
-    <em>Quiz: ${Quiz}</em>
+    <em>${Quiz}</em>
     <span>${yourAnswer}</span>
     <span>${correctAnswer}</span>
     </li>`).join('');
@@ -109,7 +109,7 @@ const popupOutput = () => {
     correctWords = [];
   };
   
-const changeDisabled = () => {
+const changeDisabledAndCursor = () => {
   $testFinishBtn.disabled = !testRunning;
   $answerInput.disabled = !testRunning;
   if (testRunning) {
@@ -124,14 +124,14 @@ const changeDisabled = () => {
 };
   
   
-$testStartBtn.onclick = e => {
+$testStartAndSkipBtn.onclick = e => {
   if(testWords.length === 0) return;
   if (e.target.textContent === 'skip') return skip();
   testRunning = true;
-  changeDisabled();
+  changeDisabledAndCursor();
   start();
   $answerInput.focus();
-  $testStartBtn.textContent = 'skip';
+  $testStartAndSkipBtn.textContent = 'skip';
 };
 
 $testFinishBtn.onclick = () => {
@@ -147,7 +147,7 @@ $PopupCloseBtn.onclick = () => {
 
 $answerInput.onkeydown = e => {
   if (!$answerInput.value || e.key !== 'Enter') return;
-  checkOfMean();
+  checkAnswer();
   $answerInput.value = '';
 };
 
