@@ -88,7 +88,7 @@ const skip = () => {
 const popupOutput = () => {
   testRunning = false;
   changeDisabledAndCursor();
-  $testAnswer.textContent = 'ㅓㄴ암';
+  $testAnswer.textContent = 'Test Word';
   $testStartAndSkipBtn.textContent = 'Start';
   testWordsIndex = 0;
   $testNum.textContent = `${testWordsIndex}/0`;  
