@@ -15,6 +15,7 @@ body *{
   box-sizing: border-box;
   & h3 {
     text-align: center;
+    margin: 0;
   }
   & button {
     border: none;
@@ -153,12 +154,14 @@ legend, .a11y-hidden {
   background-color: #fff;
   height: calc(100%-4vh);
   box-shadow: 0 0 3px 3px rgba(0,0,0,0.2);
+  overflow: auto;
+  padding: 20px 0;
 }
 .words-list {
   padding: 20px;
+  margin: 20px;
   max-height: 60vh;
   overflow: auto;
-  margin: 20px;
   background-color: $word_theme_bgc;
   & .wordflexbox {
     display: flex;
@@ -279,7 +282,6 @@ fieldset {
 .test-result-heading {
   font-family: $secondary_font_family;
   font-size: 2em;
-  margin: 0;
 }
 .test-score {
   font-size: 2em;
