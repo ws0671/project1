@@ -25,14 +25,13 @@ body *{
     border-radius: 15px;
     box-shadow: 3px 3px #aaa;
     outline: none;
-  }
-  & button:active {
-  box-shadow: none;
-  opacity: 80%;
-  transform: translate(2px, 2px);
-  }
-  & button:hover{
-  opacity: 80%;
+    &:active {
+      box-shadow: none;
+      transform: translate(2px, 2px);
+    }
+    &:hover, &:focus{
+      opacity: 80%;
+      }
   }
 }
 
@@ -69,12 +68,16 @@ legend, .a11y-hidden {
   font-size: 1.6em;
   height: $tab_height;
   border-radius: 10px 10px 0 0;
+  outline: none;
   &.words {
     background-color: $word_theme_color;
   }
   &.test {
     background-color: $test_theme_color;
-  }  
+  }
+  &:hover, &:focus {
+    opacity: 0.8;
+  }
 }
 
 // pages setting
@@ -257,14 +260,15 @@ fieldset {
 }
 
 // 팝업창
-.test-result-section {
+.test-result-popup {
   display: none;
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  max-height: 80vh;
+  z-index: 1000;
+  max-height: 70vh;
   margin: auto;
   padding: 20px;
   background-color: #fff;
@@ -279,6 +283,10 @@ fieldset {
     width: 50vw;
   }
 }
+.test-result-popup, .overlay {
+  transition: 0.2s ease display;
+}
+
 .test-result-heading {
   font-family: $secondary_font_family;
   font-size: 2em;
@@ -288,13 +296,12 @@ fieldset {
   margin: 0.2em;
 }
 
-.test-results-popup {
-  height: 75%;
+.test-results-wrong-words {
   overflow: auto;
   background-color: $test_theme_bgc;
   padding: 10px 0;
 }
-.test-results-popup > li > * {
+.test-results-wrong-words > li > * {
   display: inline-block;
   width: 30%;
   font-size: 1.2rem;
@@ -338,4 +345,3 @@ fieldset {
   background-color: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(1px);
 }
-
