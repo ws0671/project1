@@ -11,9 +11,9 @@ const getWords = async () => {
 
 const render = () => {
   $wordList.innerHTML = words.map(({id,word,mean}) => {
-    return `<dt id="${id}">${word}</dt>
+    return `<div class="wordflexbox"><dt id="${id}">${word}</dt>
     <dd id="ck-${id}">${mean}</dd>
-    <dd id="ck-${id}-remove" aria-role="button" class="remove-btn" aria-label="delete"></dd>` 
+    <dd id="ck-${id}-remove" aria-role="button" class="remove-btn" aria-label="delete"></dd></div>` 
   }).join('');
 }
 
