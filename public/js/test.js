@@ -5,26 +5,26 @@ let testWordsNum = 0;
 let testWordsIndex = 0;
 
 //입출력
-$testAnswer = document.querySelector('.test-form > fieldset > label');
-$testNum = document.querySelector('.test-num');
-$answerInput = document.querySelector('.answer');
+const $testAnswer = document.querySelector('.test-form > fieldset > label');
+const $testNum = document.querySelector('.test-num');
+const $answerInput = document.querySelector('.answer');
 
 //시작, 종료버튼
-$testStartBtn = document.querySelector('.test-start-btn');
-$testFinishBtn = document.querySelector('.test-finish-btn');
+const $testStartBtn = document.querySelector('.test-start-btn');
+const $testFinishBtn = document.querySelector('.test-finish-btn');
 
 //탭 이벤트 
-$wordsTab = document.querySelector('.tab.words');
-$testTab = document.querySelector('.tab.test');
-$wordsPage = document.querySelector('.words-page');
-$testPage = document.querySelector('.test-page');
+const $wordsTab = document.querySelector('.tab.words');
+const $testTab = document.querySelector('.tab.test');
+const $wordsPage = document.querySelector('.words-page');
+const $testPage = document.querySelector('.test-page');
 
 //팝업
-$testResultPopup = document.querySelector('.test-results-popup');
-$testResultSection = document.querySelector('.test-result-section');
-$PopupCloseBtn = document.querySelector('.close-result-btn');
-$testScore = document.querySelector('.test-score');
-$overlay = document.querySelector('.overlay');
+const $testResultPopup = document.querySelector('.test-results-popup');
+const $testResultSection = document.querySelector('.test-result-section');
+const $PopupCloseBtn = document.querySelector('.close-result-btn');
+const $testScore = document.querySelector('.test-score');
+const $overlay = document.querySelector('.overlay');
 
 
 
