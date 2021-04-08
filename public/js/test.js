@@ -139,6 +139,7 @@ $testStartAndSkipBtn.onclick = e => {
 };
 
 $testFinishBtn.onclick = () => {
+  $answerInput.value = '';
   popupOutput();
 };
 
@@ -150,7 +151,7 @@ $PopupCloseBtn.onclick = () => {
   $overlay.style.display = 'none';
 };
 
-$answerInput.onkeydown = e => {
+$answerInput.onkeypress = e => {
   if (!$answerInput.value || e.key !== 'Enter') return;
   checkAnswer();
   $answerInput.value = '';
