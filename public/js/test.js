@@ -9,7 +9,7 @@ $testAnswer = document.querySelector('.test-form > fieldset > label');
 $testNum = document.querySelector('.test-num');
 $answerInput = document.querySelector('.answer');
 
-//시작종료버튼
+//시작, 종료버튼
 $testStartBtn = document.querySelector('.test-start-btn');
 $testFinishBtn = document.querySelector('.test-finish-btn');
 
@@ -41,7 +41,6 @@ const getTestWords = async () => {
     };
   shuffle(testWords);
   testWordsNum = testWords.length;
-  console.log('ho')
 };
 
 let testRunning = false;
@@ -105,6 +104,7 @@ const popupOutput = () => {
     $overlay.style.display = 'block';
     $testResultSection.style.display = 'block';
     $testPage.classList.toggle('active');
+    $testResultSection.classList.toggle('active');
     wrongWords = [];
     correctWords = [];
   };
@@ -138,6 +138,13 @@ $testFinishBtn.onclick = () => {
   popupOutput();
 };
 
+$PopupCloseBtn.onclick = () => {
+  $testPage.classList.toggle('active');
+  $testResultSection.classList.toggle('active');
+  $testResultSection.style.display = 'none';
+  $overlay.style.display = 'none';
+};
+
 $answerInput.onkeydown = e => {
   if (!$answerInput.value || e.key !== 'Enter') return;
   checkOfMean();
@@ -155,10 +162,4 @@ $testTab.onclick = () => {
   getTestWords();
   $testPage.classList.toggle('active');
   $wordsPage.classList.toggle('active');
-};
-
-$PopupCloseBtn.onclick = () => {
-  $testPage.classList.toggle('active');
-  $testResultSection.style.display = 'none';
-  $overlay.style.display = 'none';
 };
