@@ -3,8 +3,6 @@ const $wordList = document.querySelector(".words-list")
 const $searchInput = document.querySelector(".search-input")
 const $searchResult = document.querySelector(".search-result")
 
-
-
 const getWords = async () => {
   const res = await fetch('/words');
   words = await res.json();
@@ -13,9 +11,9 @@ const getWords = async () => {
 
 const render = () => {
   $wordList.innerHTML = words.map(({id,word,mean}) => {
-    return `<dt id="${id}"><span>${word}</span><button type="button" class="remove-btn" aria-label="delete">×</button></dt>
+    return `<div class="wordflexbox"><dt id="${id}">${word}</dt>
     <dd id="ck-${id}">${mean}</dd>
-    `    
+    <dd id="ck-${id}-remove" aria-role="button" class="remove-btn" aria-label="delete"></dd></div>` 
   }).join('');
 }
 
@@ -52,6 +50,7 @@ const search = async searchInputValue => {
     body: JSON.stringify({value: `${searchInputValue}`})
   });
   $searchResult.value = await res.text();
+
   render();
 };
 
@@ -61,7 +60,7 @@ const generateNextId = () => {
 
 document.querySelector('.search-btn').onclick = e => {
   if($searchInput.value === "") return
-  if($searchInput.value === words.map(word => word.word).find(element => element === $searchInput.value))    
+  if($searchInput.value === words.map(({word}) => word).find(element => element === $searchInput.value))    
   return search($searchInput.value);
   // ,document.querySelector('.add-btn').textContent = "Edit"
   // document.querySelector('.delete-btn').textContent = "Disabled"
@@ -75,13 +74,12 @@ document.querySelector('.add-btn').onclick = () =>{
   $searchInput.value = "";
   $searchResult.value = "";
   add(wordInput, meanInput);
-
 }
 
 
 $wordList.onclick = e => {
   if(!e.target.classList.contains('remove-btn')) return;
-  const id = e.target.parentNode.id
+  const id = e.target.previousElementSibling.previousElementSibling.id
   remove(id);
 }
 
@@ -96,3 +94,4 @@ $searchInput.onkeydown = e =>{
 $searchResult.onkeydown = e =>{
   if(e.key === "Enter" ) document.querySelector('.add-btn').focus()
 }
+

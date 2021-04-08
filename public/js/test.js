@@ -3,28 +3,29 @@ let wrongWords = [];
 let correctWords = [];
 let testWordsNum = 0;
 let testWordsIndex = 0;
+let testRunning = false;
 
 //입출력
-$testAnswer = document.querySelector('.test-form > fieldset > label');
-$testNum = document.querySelector('.test-num');
-$answerInput = document.querySelector('.answer');
+const $testAnswer = document.querySelector('.test-form > fieldset > label');
+const $testNum = document.querySelector('.test-num');
+const $answerInput = document.querySelector('.answer');
 
-//시작종료버튼
-$testStartBtn = document.querySelector('.test-start-btn');
-$testFinishBtn = document.querySelector('.test-finish-btn');
+//시작, 종료버튼
+const $testStartAndSkipBtn = document.querySelector('.test-start-btn');
+const $testFinishBtn = document.querySelector('.test-finish-btn');
 
 //탭 이벤트 
-$wordsTab = document.querySelector('.tab.words');
-$testTab = document.querySelector('.tab.test');
-$wordsPage = document.querySelector('.words-page');
-$testPage = document.querySelector('.test-page');
+const $wordsTab = document.querySelector('.tab.words');
+const $testTab = document.querySelector('.tab.test');
+const $wordsPage = document.querySelector('.words-page');
+const $testPage = document.querySelector('.test-page');
 
 //팝업
-$testResultPopup = document.querySelector('.test-results-popup');
-$testResultSection = document.querySelector('.test-result-section');
-$PopupCloseBtn = document.querySelector('.close-result-btn');
-$testScore = document.querySelector('.test-score');
-$overlay = document.querySelector('.overlay');
+const $testResultPopup = document.querySelector('.test-result-section');
+const $testResultWrongWords = document.querySelector('.test-results-popup');
+const $PopupCloseBtn = document.querySelector('.close-result-btn');
+const $testScore = document.querySelector('.test-score');
+const $overlay = document.querySelector('.overlay');
 
 
 
@@ -41,18 +42,16 @@ const getTestWords = async () => {
     };
   shuffle(testWords);
   testWordsNum = testWords.length;
-  console.log('ho')
 };
 
-let testRunning = false;
 
-const start = () => {
+const testWordsOutput = () => {
   if (testWordsIndex === testWords.length) return popupOutput();
   $testAnswer.textContent = testWords[testWordsIndex].word;
   $testNum.textContent = `${testWordsIndex + 1}/${testWordsNum}`;
 };
 
-const checkOfMean = () => {
+const checkAnswer = () => {
   if ($answerInput.value === testWords[testWordsIndex].mean){
     $testAnswer.textContent = '맞았습니다';
     getCorrectWord();
@@ -61,7 +60,7 @@ const checkOfMean = () => {
     getWrongWord();
   };
   ++testWordsIndex;
-  setTimeout(start, 500);
+  setTimeout(testWordsOutput, 500);
 };
 
 const getCorrectWord = () => {
@@ -83,33 +82,37 @@ const getWrongWord = () => {
 const skip = () => {
   getWrongWord();
   ++testWordsIndex;
-  start();
+  testWordsOutput();
 };
 
 const popupOutput = () => {
   testRunning = false;
-  changeDisabled();
+  changeDisabledAndCursor();
   $testAnswer.textContent = 'Sample Word';
-  $testStartBtn.textContent = 'Start';
+  $testStartAndSkipBtn.textContent = 'Start';
   testWordsIndex = 0;
   $testNum.textContent = `${testWordsIndex}/0`;  
   if (wrongWords.length === 0 && correctWords.length === 0) return;
-  $testResultPopup.innerHTML = wrongWords.map(
+  $testResultWrongWords.innerHTML = wrongWords.map(
     ({Quiz, yourAnswer, correctAnswer}) => 
     `<li>
-    <em>Quiz: ${Quiz}</em>
-    <span>Your answer : ${yourAnswer}</span>
-    <span>Correct Answer : ${correctAnswer}</span>
+    <em>${Quiz}</em>
+    <span>${yourAnswer}</span>
+    <span>${correctAnswer}</span>
     </li>`).join('');
-    $testScore.textContent = `${(100 - wrongWords.length / (correctWords.length + wrongWords.length) * 100).toFixed(1)}`;
-    $overlay.style.display = 'block';
-    $testResultSection.style.display = 'block';
-    $testPage.classList.toggle('active');
-    wrongWords = [];
-    correctWords = [];
+  $testScore.textContent = `${
+    (100 - wrongWords.length / (correctWords.length + wrongWords.length) * 100)
+    .toFixed(1)
+  }`;
+  $overlay.style.display = 'block';
+  $testResultPopup.style.display = 'block';
+  $testPage.classList.toggle('active');
+  $testResultPopup.classList.toggle('active');
+  wrongWords = [];
+  correctWords = [];
   };
   
-const changeDisabled = () => {
+const changeDisabledAndCursor = () => {
   $testFinishBtn.disabled = !testRunning;
   $answerInput.disabled = !testRunning;
   if (testRunning) {
@@ -124,23 +127,30 @@ const changeDisabled = () => {
 };
   
   
-$testStartBtn.onclick = e => {
+$testStartAndSkipBtn.onclick = e => {
   if(testWords.length === 0) return;
   if (e.target.textContent === 'skip') return skip();
   testRunning = true;
-  changeDisabled();
-  start();
+  changeDisabledAndCursor();
+  testWordsOutput();
   $answerInput.focus();
-  $testStartBtn.textContent = 'skip';
+  $testStartAndSkipBtn.textContent = 'skip';
 };
 
 $testFinishBtn.onclick = () => {
   popupOutput();
 };
 
+$PopupCloseBtn.onclick = () => {
+  $testPage.classList.toggle('active');
+  $testResultPopup.classList.toggle('active');
+  $testResultPopup.style.display = 'none';
+  $overlay.style.display = 'none';
+};
+
 $answerInput.onkeydown = e => {
   if (!$answerInput.value || e.key !== 'Enter') return;
-  checkOfMean();
+  checkAnswer();
   $answerInput.value = '';
 };
 
@@ -155,10 +165,4 @@ $testTab.onclick = () => {
   getTestWords();
   $testPage.classList.toggle('active');
   $wordsPage.classList.toggle('active');
-};
-
-$PopupCloseBtn.onclick = () => {
-  $testPage.classList.toggle('active');
-  $testResultSection.style.display = 'none';
-  $overlay.style.display = 'none';
 };
