@@ -167,26 +167,25 @@ legend, .a11y-hidden {
   overflow: auto;
   margin: 20px;
   background-color: #e6e6fa;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
 }
-
-.words-list > * {
-  display: inline-block;
+.words-list .wordflexbox {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.words-list .wordflexbox * {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  margin: 10px 0;
+  margin: 5px;
 }
-.words-list > *:nth-child(3n+1) {
+.words-list .wordflexbox *:nth-child(1) {
   font-weight: 500;
-  width: 40%;
+  min-width: 40%;
 }
-.words-list > *:nth-child(3n+2) {
-  width: 40%;
+.words-list .wordflexbox *:nth-child(2) {
+  flex-grow: 1;
 }
-.words-list > *:nth-child(3n) {
+.words-list .wordflexbox *:nth-child(3) {
   width: 15px;
   height: 15px;
   background-image: url(../css/close-btn.png);
@@ -194,7 +193,7 @@ legend, .a11y-hidden {
   background-size: cover;
   cursor: pointer;
 }
-.words-list > *:nth-child(3n):hover {
+.words-list .wordflexbox *:nth-child(3):hover {
   opacity: 80%;
 }
 
@@ -248,7 +247,6 @@ fieldset {
   left: 0;
   right: 0;
 }
-
 .test-form fieldset {
   text-align: center;
 }
