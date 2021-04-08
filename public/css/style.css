@@ -167,6 +167,9 @@ legend, .a11y-hidden {
   overflow: auto;
   margin: 20px;
   background-color: #e6e6fa;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
 }
 
 .words-list > * {
@@ -174,29 +177,25 @@ legend, .a11y-hidden {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  padding: 0.7rem 1rem;
+  margin: 10px 0;
 }
-
-.words-list .remove-btn {
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 50%;
-  position: absolute;
-  right: 10%;
-  background-color: rgba(0, 0, 0, 0.15);
-  color: rgba(0, 0, 0, 0.5);
-  box-shadow: none;
-  padding: 0;
+.words-list > *:nth-child(3n+1) {
+  font-weight: 500;
+  width: 40%;
 }
-
-.words-list > dt {
-  width: 48%;
-  position: relative;
+.words-list > *:nth-child(3n+2) {
+  width: 40%;
 }
-
-.words-list > dd {
-  margin: 0;
-  width: 48%;
+.words-list > *:nth-child(3n) {
+  width: 15px;
+  height: 15px;
+  background-image: url(../css/close-btn.png);
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+}
+.words-list > *:nth-child(3n):hover {
+  opacity: 80%;
 }
 
 .list-section {
