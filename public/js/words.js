@@ -27,7 +27,7 @@ const add = async (wordInput, meanInput)=> {
   const res = await fetch('/words', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({id: generateNextId(), word: wordInput, mean: meanInput, result: true})
+    body: JSON.stringify({id: generateNextId(), word: wordInput, mean: meanInput})
   });
   words = await res.json();
   $searchInput.focus();
