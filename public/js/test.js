@@ -21,8 +21,8 @@ const $wordsPage = document.querySelector('.words-page');
 const $testPage = document.querySelector('.test-page');
 
 //팝업
-const $testResultPopup = document.querySelector('.test-results-popup');
-const $testResultSection = document.querySelector('.test-result-section');
+const $testResultPopup = document.querySelector('.test-result-section');
+const $testResultWrongWords = document.querySelector('.test-results-popup');
 const $PopupCloseBtn = document.querySelector('.close-result-btn');
 const $testScore = document.querySelector('.test-score');
 const $overlay = document.querySelector('.overlay');
@@ -45,7 +45,7 @@ const getTestWords = async () => {
 };
 
 
-const start = () => {
+const testWordsOutput = () => {
   if (testWordsIndex === testWords.length) return popupOutput();
   $testAnswer.textContent = testWords[testWordsIndex].word;
   $testNum.textContent = `${testWordsIndex + 1}/${testWordsNum}`;
@@ -60,7 +60,7 @@ const checkAnswer = () => {
     getWrongWord();
   };
   ++testWordsIndex;
-  setTimeout(start, 500);
+  setTimeout(testWordsOutput, 500);
 };
 
 const getCorrectWord = () => {
@@ -82,7 +82,7 @@ const getWrongWord = () => {
 const skip = () => {
   getWrongWord();
   ++testWordsIndex;
-  start();
+  testWordsOutput();
 };
 
 const popupOutput = () => {
@@ -93,20 +93,23 @@ const popupOutput = () => {
   testWordsIndex = 0;
   $testNum.textContent = `${testWordsIndex}/0`;  
   if (wrongWords.length === 0 && correctWords.length === 0) return;
-  $testResultPopup.innerHTML = wrongWords.map(
+  $testResultWrongWords.innerHTML = wrongWords.map(
     ({Quiz, yourAnswer, correctAnswer}) => 
     `<li>
     <em>${Quiz}</em>
     <span>${yourAnswer}</span>
     <span>${correctAnswer}</span>
     </li>`).join('');
-    $testScore.textContent = `${(100 - wrongWords.length / (correctWords.length + wrongWords.length) * 100).toFixed(1)}`;
-    $overlay.style.display = 'block';
-    $testResultSection.style.display = 'block';
-    $testPage.classList.toggle('active');
-    $testResultSection.classList.toggle('active');
-    wrongWords = [];
-    correctWords = [];
+  $testScore.textContent = `${
+    (100 - wrongWords.length / (correctWords.length + wrongWords.length) * 100)
+    .toFixed(1)
+  }`;
+  $overlay.style.display = 'block';
+  $testResultPopup.style.display = 'block';
+  $testPage.classList.toggle('active');
+  $testResultPopup.classList.toggle('active');
+  wrongWords = [];
+  correctWords = [];
   };
   
 const changeDisabledAndCursor = () => {
@@ -129,7 +132,7 @@ $testStartAndSkipBtn.onclick = e => {
   if (e.target.textContent === 'skip') return skip();
   testRunning = true;
   changeDisabledAndCursor();
-  start();
+  testWordsOutput();
   $answerInput.focus();
   $testStartAndSkipBtn.textContent = 'skip';
 };
@@ -140,8 +143,8 @@ $testFinishBtn.onclick = () => {
 
 $PopupCloseBtn.onclick = () => {
   $testPage.classList.toggle('active');
-  $testResultSection.classList.toggle('active');
-  $testResultSection.style.display = 'none';
+  $testResultPopup.classList.toggle('active');
+  $testResultPopup.style.display = 'none';
   $overlay.style.display = 'none';
 };
 
