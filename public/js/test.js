@@ -97,8 +97,8 @@ const popupOutput = () => {
     ({Quiz, yourAnswer, correctAnswer}) => 
     `<li>
     <em>Quiz: ${Quiz}</em>
-    <span>Your answer : ${yourAnswer}</span>
-    <span>Correct Answer : ${correctAnswer}</span>
+    <span>${yourAnswer}</span>
+    <span>${correctAnswer}</span>
     </li>`).join('');
     $testScore.textContent = `${(100 - wrongWords.length / (correctWords.length + wrongWords.length) * 100).toFixed(1)}`;
     $overlay.style.display = 'block';
