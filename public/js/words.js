@@ -11,9 +11,9 @@ const getWords = async () => {
 
 const render = () => {
   $wordList.innerHTML = words.map(({id,word,mean}) => {
-    return `<dt id="${id}"><span>${word}</span><button type="button" class="remove-btn" aria-label="delete">×</button></dt>
+    return `<dt id="${id}">${word}</dt>
     <dd id="ck-${id}">${mean}</dd>
-    `    
+    <dd id="ck-${id}-remove" aria-role="button" class="remove-btn" aria-label="delete"></dd>` 
   }).join('');
 }
 
@@ -50,7 +50,7 @@ const search = async searchInputValue => {
     body: JSON.stringify({value: `${searchInputValue}`})
   });
   $searchResult.value = await res.text();
-  
+
   render();
 };
 
@@ -79,7 +79,7 @@ document.querySelector('.add-btn').onclick = () =>{
 
 $wordList.onclick = e => {
   if(!e.target.classList.contains('remove-btn')) return;
-  const id = e.target.parentNode.id
+  const id = e.target.previousElementSibling.previousElementSibling.id
   remove(id);
 }
 
