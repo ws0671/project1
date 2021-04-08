@@ -25,10 +25,9 @@ body * button {
 }
 body * button:active {
   box-shadow: none;
-  opacity: 80%;
   transform: translate(2px, 2px);
 }
-body * button:hover {
+body * button:hover, body * button:focus {
   opacity: 80%;
 }
 
@@ -62,12 +61,16 @@ legend, .a11y-hidden {
   font-size: 1.6em;
   height: 36px;
   border-radius: 10px 10px 0 0;
+  outline: none;
 }
 .tab.words {
-  background-color: #8977AD;
+  background-color: #726a95;
 }
 .tab.test {
-  background-color: #4cbefc;
+  background-color: #69abc0;
+}
+.tab:hover, .tab:focus {
+  opacity: 0.8;
 }
 
 .words-page, .test-page {
@@ -84,15 +87,15 @@ legend, .a11y-hidden {
 }
 
 .words-page {
-  background-color: #e6e6fa;
-  border: 2px solid #8977AD;
+  background-color: #f9f2fb;
+  border: 2px solid #726a95;
   display: flex;
   flex-direction: row-reverse;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 .words-page button {
-  background-color: #8977AD;
+  background-color: #726a95;
 }
 .words-page label {
   display: inline-block;
@@ -142,7 +145,7 @@ legend, .a11y-hidden {
 }
 
 .search-input, .search-result {
-  border: 1px solid #8977AD;
+  border: 1px solid #726a95;
   background-color: #fff;
   padding: 5px;
   margin: 0 20px;
@@ -169,7 +172,7 @@ legend, .a11y-hidden {
   margin: 20px;
   max-height: 60vh;
   overflow: auto;
-  background-color: #e6e6fa;
+  background-color: #f9f2fb;
 }
 .words-list .wordflexbox {
   display: flex;
@@ -210,8 +213,8 @@ legend, .a11y-hidden {
 }
 
 .test-section {
-  border: 2px solid #4cbefc;
-  background-color: #beedfd;
+  border: 2px solid #69abc0;
+  background-color: #c2dcdb;
   height: calc(100vh - 36px);
 }
 
@@ -225,7 +228,7 @@ fieldset {
 }
 
 .test-start-btn, .test-finish-btn {
-  background-color: #4cbefc;
+  background-color: #69abc0;
   bottom: 20px;
 }
 
@@ -263,7 +266,7 @@ fieldset {
 
 .answer {
   cursor: not-allowed;
-  border: 2px solid #4cbefc;
+  border: 2px solid #69abc0;
   background-color: #fff;
   width: 50%;
   height: 40px;
@@ -277,7 +280,8 @@ fieldset {
   bottom: 0;
   left: 0;
   right: 0;
-  max-height: 80vh;
+  z-index: 1000;
+  max-height: 70vh;
   margin: auto;
   padding: 20px;
   background-color: #fff;
@@ -285,7 +289,6 @@ fieldset {
   text-align: center;
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  z-index: 1000;
 }
 @media screen and (max-width: 714px) {
   .test-result-popup {
@@ -296,6 +299,10 @@ fieldset {
   .test-result-popup {
     width: 50vw;
   }
+}
+
+.test-result-popup, .overlay {
+  transition: 0.2s ease display;
 }
 
 .test-result-heading {
@@ -309,9 +316,8 @@ fieldset {
 }
 
 .test-results-wrong-words {
-  height: 75%;
   overflow: auto;
-  background-color: #beedfd;
+  background-color: #c2dcdb;
   padding: 10px 0;
 }
 
