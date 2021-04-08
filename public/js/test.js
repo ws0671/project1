@@ -6,7 +6,7 @@ let testWordsIndex = 0;
 let testRunning = false;
 
 //입출력
-const $testAnswer = document.querySelector('.test-form > fieldset > label');
+const $testAnswer = document.querySelector('.test-word');
 const $testNum = document.querySelector('.test-num');
 const $answerInput = document.querySelector('.answer');
 
@@ -99,7 +99,8 @@ const popupOutput = () => {
     <em>${Quiz}</em>
     <span>${yourAnswer}</span>
     <span>${correctAnswer}</span>
-    </li>`).join('');
+    </li>`
+    ).join('');
   $testScore.textContent = `${
     (100 - wrongWords.length / (testWords.length) * 100)
     .toFixed(0)
@@ -141,6 +142,7 @@ $testFinishBtn.onclick = () => {
   popupOutput();
 };
 
+
 $PopupCloseBtn.onclick = () => {
   $testPage.classList.toggle('active');
   $testResultPopup.classList.toggle('active');
@@ -165,4 +167,8 @@ $testTab.onclick = () => {
   getTestWords();
   $testPage.classList.toggle('active');
   $wordsPage.classList.toggle('active');
+};
+
+document.querySelector('.test-form').onsubmit = e => {
+  e.preventDefault();
 };
