@@ -21,8 +21,8 @@ const $wordsPage = document.querySelector('.words-page');
 const $testPage = document.querySelector('.test-page');
 
 //팝업
-const $testResultPopup = document.querySelector('.test-result-section');
-const $testResultWrongWords = document.querySelector('.test-results-popup');
+const $testResultPopup = document.querySelector('.test-result-popup');
+const $testResultWrongWords = document.querySelector('.test-results-wrong-words');
 const $PopupCloseBtn = document.querySelector('.close-result-btn');
 const $testScore = document.querySelector('.test-score');
 const $overlay = document.querySelector('.overlay');
@@ -60,7 +60,7 @@ const checkAnswer = () => {
     getWrongWord();
   };
   ++testWordsIndex;
-  setTimeout(testWordsOutput, 500);
+  setTimeout(testWordsOutput, 800);
 };
 
 const getCorrectWord = () => {
@@ -88,7 +88,7 @@ const skip = () => {
 const popupOutput = () => {
   testRunning = false;
   changeDisabledAndCursor();
-  $testAnswer.textContent = 'Sample Word';
+  $testAnswer.textContent = 'ㅓㄴ암';
   $testStartAndSkipBtn.textContent = 'Start';
   testWordsIndex = 0;
   $testNum.textContent = `${testWordsIndex}/0`;  
@@ -101,8 +101,8 @@ const popupOutput = () => {
     <span>${correctAnswer}</span>
     </li>`).join('');
   $testScore.textContent = `${
-    (100 - wrongWords.length / (correctWords.length + wrongWords.length) * 100)
-    .toFixed(1)
+    (100 - wrongWords.length / (testWords.length) * 100)
+    .toFixed(0)
   }`;
   $overlay.style.display = 'block';
   $testResultPopup.style.display = 'block';
@@ -126,7 +126,7 @@ const changeDisabledAndCursor = () => {
   };
 };
   
-  
+  //이벤트 핸들러
 $testStartAndSkipBtn.onclick = e => {
   if(testWords.length === 0) return;
   if (e.target.textContent === 'skip') return skip();
