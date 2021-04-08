@@ -1,5 +1,6 @@
 @import url(./normalize.css);
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 @import "mixin";
 @import "variables";
 
@@ -214,6 +215,7 @@ legend, .a11y-hidden {
 
 .test-section > * {
   position: absolute;
+  font-family: 'Do Hyeon', sans-serif;
 }
 fieldset {
   border: none;
@@ -247,7 +249,6 @@ fieldset {
 .test-word {
   display: block;
   margin: 3vh;
-  font-family: $secondary_font_family;
   font-size: 3em; 
 }
 .answer {
