@@ -160,36 +160,36 @@ legend, .a11y-hidden {
   overflow: auto;
   margin: 20px;
   background-color: $word_theme_bgc;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-}
-
-.words-list > * {
-  display: inline-block;
-  white-space: nowrap; 
-  text-overflow: ellipsis; 
-  overflow: hidden;
-  margin: 10px 0;
-  &:nth-child(3n+1){
-    font-weight: 500;
-    width: 40%;
-  }
-  &:nth-child(3n+2){
-    width: 40%;
-  }
-  &:nth-child(3n){
-    width: 15px;
-    height: 15px;
-    background-image: url(../css/close-btn.png);
-    background-position: center;
-    background-size: cover;
-    cursor: pointer;
-    &:hover {
-      opacity: 80%;
+  & .wordflexbox {
+    display: flex;
+    flex-wrap: nowrap;
+    & * {
+      white-space: nowrap; 
+      text-overflow: ellipsis; 
+      overflow: hidden;
+      margin: 5px;
+      &:nth-child(1) {
+        font-weight: 500;
+        min-width: 40%;
+      }
+      &:nth-child(2){
+        flex-grow: 1;
+      }
+      &:nth-child(3){
+        width: 15px;
+        height: 15px;
+        background-image: url(../css/close-btn.png);
+        background-position: center;
+        background-size: cover;
+        cursor: pointer;
+        &:hover {
+          opacity: 80%;
+        }
+      }
     }
   }
 }
+
 
 .list-section{
   position: relative;
@@ -205,6 +205,7 @@ legend, .a11y-hidden {
   background-color: $test_theme_bgc;
   height: calc(100vh - #{$tab_height});
 }
+
 .test-section > * {
   position: absolute;
 }
@@ -233,10 +234,11 @@ fieldset {
   top: 30%;
   left: 0;
   right: 0;
+  & fieldset {
+    text-align: center;
+  }
 }
-.test-form fieldset {
-  text-align: center;
-}
+
 .test-word {
   display: block;
   margin: 3vh;
