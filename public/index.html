@@ -11,7 +11,9 @@
 </head>
 <body>
   <div class="container">
+    <header class="a11y-hidden"><h1>Lee's Wordsbank and Test Page</h1></header>
     <main class="main">
+      <h1 class="a11y-hidden">Main Pages</h1>
       <ul class="tablist reset-list" role="tablist">
         <!-- a태그 클릭 시 default 동작안하게 js 처리 (맨마지막에 시간 남으면) -->
         <li role="none"><a class="tab words" href="#" role="tab" aria-selected="true" aria-controls="wordsPage" id="tabWords">WORDS</a></li>
@@ -19,6 +21,7 @@
       </ul>
       <!-- words-page 랑 test-page 중 tab에서 클릭하면 클래스명에 active가 생기게끔 js처리 -->
       <div class="words-page active" role="tabpanel" id="wordsPage" aria-labelledby="tabWords">
+        <h2 class="a11y-hidden">Words List page</h2>
         <section class="search-section">            
           <h3 class="search-section-heading">Search or Add Words</h3>
           <input type="text" class="search-input" aria-label="Search">
@@ -35,21 +38,22 @@
         </section>
       </div>
       <div class="test-page" role="tabpanel" id="testPage" aria-labelledby="tabTest">
+        <h2 class="a11y-hidden">Test Page</h2>
         <section class="test-section">
-          <h3 class="test-heading a11y-hidden">TEST</h3>
+          <h3 class="test-heading a11y-hidden">Start Test</h3>
           <button class="test-start-btn">Start</button>
           <form class="test-form">
             <fieldset>
               <legend>Test</legend>
-              <label class="test-word" for="testAnswer">Sample Word</label>
+              <label class="test-word" for="testAnswer">Test Word</label>
               <input class="answer" type="text" placeholder="Type Your Answer" id="testAnswer" disabled>
             </fieldset>
           </form>
           <span class="test-num">0/0</span>
           <button class="test-finish-btn" disabled>Finish</button>
         </section>
-        <section class="test-result-section active">
-          <h3 class="test-result-heading">Score</h3>
+        <section class="test-result-section">
+          <h3 class="test-result-heading">Test Result</h3>
           <p class="test-score">100</p>
           <ul class="test-results-popup reset-list">
             <!-- js로 동적 생성해야 하는 부분 -->
@@ -60,7 +64,8 @@
       </div>
     </main>
     <div class="overlay"></div>
-    <footer class="footer">
+    <footer class="a11y-hidden">
+      <small>Made by Lees</small>
       <address>서울특별시 성동구 성수2가3동 289-10, 8층 D강의실</address>
     </footer>
   </div>

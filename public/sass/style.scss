@@ -15,9 +15,7 @@ h3 {
   text-align: center;
 }
 
-fieldset {
-  border: none;
-}
+
 // 숨김처리
 legend, .a11y-hidden {
   position: absolute;
@@ -98,7 +96,8 @@ button:hover{
   flex-direction: row-reverse;
   flex-wrap: wrap;
   justify-content: space-around;
-  padding: 2vw;
+  padding: 2vw 0;
+  
 }
 
 .words-page button{
@@ -108,15 +107,15 @@ button:hover{
   display: inline-block;
 }
 .search-section {
-  width: 50%;
+  width: 45%;
   display: grid;
-  padding: 2vw;
+  margin: 2.5%;
   grid-template-areas: "searchHeading searchHeading searchHeading"
                        "searchInput searchInput searchButton"
                        "searchResult searchResult addButton"
                        ". . ."
                        ". . .";
-  min-width: 400px;
+  min-width: 320px;
   row-gap: 20px;
   align-items: center;
   justify-content: stretch;
@@ -136,12 +135,13 @@ button:hover{
 }
 
 .search-btn, .add-btn {
-  width: 100%;
+  width: 90%;
 }
 .list-section {
   width: 45%;
+  min-width: 300px;
+  margin: 2.5%;
   background-color: #fff;
-  min-width: 400px;
   height: calc(100%-4vh);
   box-shadow: 0 0 3px 3px rgba(0,0,0,0.2);
 }
@@ -185,9 +185,12 @@ button:hover{
   width: 68%;
 }
 
-.clear-btn {
+.list-section{
   position: relative;
-  left: 70%;
+}
+.clear-btn {
+  position: absolute;
+  right: 10%;
 }
 
 // test 페이지
@@ -199,8 +202,9 @@ button:hover{
 .test-section > * {
   position: absolute;
 }
-.answer{
-  cursor: not-allowed;
+fieldset {
+  border: none;
+  min-width: 300px;
 }
 .test-start-btn, .test-finish-btn {
   background-color: $test_theme_color;
@@ -229,14 +233,15 @@ button:hover{
 }
 .test-word {
   display: block;
+  margin: 3vh;
   font-family: $secondary_font_family;
-  font-size: 4em; //반응형일 때 조정할 것
+  font-size: 3em; 
 }
 .answer {
-  margin: 10px;
+  cursor: not-allowed;
   border: 2px solid $test_theme_color;
   background-color: #fff;
-  width: 300px;
+  width: 50%;
   height: 40px;
   text-align: center;
 }
@@ -259,6 +264,10 @@ button:hover{
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
+// .test-results-popup ::before {
+//   content: "lalala";
+
+// }
 .test-result-heading {
   font-family: $secondary_font_family;
   font-size: 2em;
@@ -269,12 +278,6 @@ button:hover{
   color: #333
 }
 
-.footer {
-  background-color: lime;
-  position: fixed;
-  top : 100%; //숨겨두었으니 나중에 꺼내자.
-  text-align: center;
-}
 /* 블러처리 */
 .overlay {
   position: fixed;
