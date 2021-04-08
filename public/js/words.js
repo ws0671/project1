@@ -89,11 +89,11 @@ $clearBtn.onclick = () => {
   clear();
 }
 
-$searchInput.onkeydown = e =>{
+$searchInput.onkeypress = e =>{
   if(e.key === "Enter" ) $searchResult.focus()
 }
 
-$searchResult.onkeydown = e =>{
+$searchResult.onkeypress = e =>{
   if(e.key === "Enter" ) $addBtn.focus()
 }
 
