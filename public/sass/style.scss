@@ -3,18 +3,37 @@
 @import "mixin";
 @import "variables";
 
+// 리셋 리스트
 .reset-list {
   padding-left: 0;
   list-style-type: none;
   margin: 0;
 }
+
+// 기본값 처리
 body *{
   box-sizing: border-box;
+  & h3 {
+    text-align: center;
+  }
+  & button {
+    border: none;
+    color: #fff;
+    width: 100px;
+    height: 30px;
+    border-radius: 15px;
+    box-shadow: 3px 3px #aaa;
+    outline: none;
+  }
+  & button:active {
+  box-shadow: none;
+  opacity: 80%;
+  transform: translate(2px, 2px);
+  }
+  & button:hover{
+  opacity: 80%;
+  }
 }
-h3 {
-  text-align: center;
-}
-
 
 // 숨김처리
 legend, .a11y-hidden {
@@ -27,26 +46,7 @@ legend, .a11y-hidden {
   clip-path: polygon(0 0, 0 0, 0 0);
 }
 
-button {
-  border: none;
-  color: #fff;
-  width: 100px;
-  height: 30px;
-  border-radius: 15px;
-  box-shadow: 3px 3px #aaa;
-  outline: none;
-}
-
-button:active {
-  box-shadow: none;
-  opacity: 80%;
-  transform: translate(2px, 2px);
-}
-
-button:hover{
-  opacity: 80%;
-}
-
+// container setting
 .container{
   color: $font_color;
   font-size: $font_size;
@@ -58,6 +58,7 @@ button:hover{
   position: relative;
 }
 
+// tab styling
 .tab{
   width: 50%;
   float: left;
@@ -67,28 +68,29 @@ button:hover{
   font-size: 1.6em;
   height: $tab_height;
   border-radius: 10px 10px 0 0;
+  &.words {
+    background-color: $word_theme_color;
+  }
+  &.test {
+    background-color: $test_theme_color;
+  }  
 }
 
-.tab.words {
-  background-color: $word_theme_color;
-}
-
-.tab.test {
-  background-color: $test_theme_color;
-}
-
+// pages setting
 .words-page, .test-page {
   position: absolute;
   top: $tab_height;
   width: 100%;
   height: calc(100vh - #{$tab_height});
   max-width: $site_max_width;
+  overflow: auto;
 }
 
 .active {
   z-index: 1000;
 }
 
+// first tab : words-page setting
 .words-page {
   background-color: $word_theme_bgc;
   border: 2px solid $word_theme_color;
@@ -96,16 +98,15 @@ button:hover{
   flex-direction: row-reverse;
   flex-wrap: wrap;
   justify-content: space-around;
-  padding: 2vw 0;
-  
+  & button {
+    background-color: $word_theme_color;
+  }
+  & label {
+    display: inline-block;
+  }
 }
 
-.words-page button{
-  background-color: $word_theme_color;
-}
-.words-page label {
-  display: inline-block;
-}
+// search section setting
 .search-section {
   width: 45%;
   display: grid;
@@ -113,8 +114,15 @@ button:hover{
   grid-template-areas: "searchHeading searchHeading searchHeading"
                        "searchInput searchInput searchButton"
                        "searchResult searchResult addButton"
-                       ". . ."
                        ". . .";
+  @include mobile(714px) {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 2fr 1fr 1fr 0fr;
+  }
+  @include desktop(715px) {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 3fr;
+  }
   min-width: 320px;
   row-gap: 20px;
   align-items: center;
@@ -132,6 +140,7 @@ button:hover{
   background-color: #fff;
   padding: 5px;
   margin: 0 20px;
+  text-align: center;
 }
 
 .search-btn, .add-btn {
@@ -163,11 +172,6 @@ button:hover{
 }
 
 
-.words-list > dt {
-  width: 30%;
-  position: relative;
-}
-
 .words-list .remove-btn {
   width: 1.5rem;
   height: 1.5rem;
@@ -180,9 +184,14 @@ button:hover{
   padding: 0;
 }
 
+
+.words-list > dt {
+  width: 48%;
+  position: relative;
+}
 .words-list > dd {
   margin: 0;
-  width: 68%;
+  width: 48%;
 }
 
 .list-section{
@@ -250,10 +259,10 @@ fieldset {
 .test-result-section {
   display: none;
   position: absolute;
-  top: 10vh;
+  top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
-  width: 50vw;
   max-height: 80vh;
   margin: auto;
   padding: 20px;
@@ -262,20 +271,49 @@ fieldset {
   text-align: center;
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  @include mobile(714px){
+    width: 80vw;
+  }
+  @include desktop(715px){
+    width: 50vw;
+  }
 }
-
-// .test-results-popup ::before {
-//   content: "lalala";
-
-// }
 .test-result-heading {
   font-family: $secondary_font_family;
   font-size: 2em;
 }
 
+.test-results-popup::before {
+  content: "틀린 문제를 확인하세요";
+  display: block;
+  padding-bottom: 20px;
+}
+.test-results-popup > li > * {
+  display: inline-block;
+  width: 30%;
+  font-size: 1.2rem;
+  &:first-child {
+    font-style: normal;
+    font-weight: 500;
+    ;
+  }
+  &:nth-child(2) {
+    color: #ff0000;
+  }
+  &:nth-child(3) {
+    color: #008000;
+  }
+}
+
 .close-result-btn {
   background-color: #ccc;
-  color: #333
+  width: 30px;
+  height: 30px;
+  box-shadow: none;
+  cursor: pointer;
+  color: #333;
+  position: absolute;
+  bottom: 20px;
 }
 
 /* 블러처리 */

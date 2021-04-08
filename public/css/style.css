@@ -10,9 +10,25 @@
 body * {
   box-sizing: border-box;
 }
-
-h3 {
+body * h3 {
   text-align: center;
+}
+body * button {
+  border: none;
+  color: #fff;
+  width: 100px;
+  height: 30px;
+  border-radius: 15px;
+  box-shadow: 3px 3px #aaa;
+  outline: none;
+}
+body * button:active {
+  box-shadow: none;
+  opacity: 80%;
+  transform: translate(2px, 2px);
+}
+body * button:hover {
+  opacity: 80%;
 }
 
 legend, .a11y-hidden {
@@ -23,26 +39,6 @@ legend, .a11y-hidden {
   margin: -1px;
   overflow: hidden;
   clip-path: polygon(0 0, 0 0, 0 0);
-}
-
-button {
-  border: none;
-  color: #fff;
-  width: 100px;
-  height: 30px;
-  border-radius: 15px;
-  box-shadow: 3px 3px #aaa;
-  outline: none;
-}
-
-button:active {
-  box-shadow: none;
-  opacity: 80%;
-  transform: translate(2px, 2px);
-}
-
-button:hover {
-  opacity: 80%;
 }
 
 .container {
@@ -66,11 +62,9 @@ button:hover {
   height: 36px;
   border-radius: 10px 10px 0 0;
 }
-
 .tab.words {
   background-color: #8977AD;
 }
-
 .tab.test {
   background-color: #4cbefc;
 }
@@ -81,6 +75,7 @@ button:hover {
   width: 100%;
   height: calc(100vh - 36px);
   max-width: 960px;
+  overflow: auto;
 }
 
 .active {
@@ -94,13 +89,10 @@ button:hover {
   flex-direction: row-reverse;
   flex-wrap: wrap;
   justify-content: space-around;
-  padding: 2vw 0;
 }
-
 .words-page button {
   background-color: #8977AD;
 }
-
 .words-page label {
   display: inline-block;
 }
@@ -109,11 +101,23 @@ button:hover {
   width: 45%;
   display: grid;
   margin: 2.5%;
-  grid-template-areas: "searchHeading searchHeading searchHeading" "searchInput searchInput searchButton" "searchResult searchResult addButton" ". . ." ". . .";
+  grid-template-areas: "searchHeading searchHeading searchHeading" "searchInput searchInput searchButton" "searchResult searchResult addButton" ". . .";
   min-width: 320px;
   row-gap: 20px;
   align-items: center;
   justify-content: stretch;
+}
+@media screen and (max-width: 714px) {
+  .search-section {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 2fr 1fr 1fr 0fr;
+  }
+}
+@media screen and (min-width: 715px) {
+  .search-section {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 3fr;
+  }
 }
 
 .search-section-heading {
@@ -141,6 +145,7 @@ button:hover {
   background-color: #fff;
   padding: 5px;
   margin: 0 20px;
+  text-align: center;
 }
 
 .search-btn, .add-btn {
@@ -172,11 +177,6 @@ button:hover {
   padding: 0.7rem 1rem;
 }
 
-.words-list > dt {
-  width: 30%;
-  position: relative;
-}
-
 .words-list .remove-btn {
   width: 1.5rem;
   height: 1.5rem;
@@ -189,9 +189,14 @@ button:hover {
   padding: 0;
 }
 
+.words-list > dt {
+  width: 48%;
+  position: relative;
+}
+
 .words-list > dd {
   margin: 0;
-  width: 68%;
+  width: 48%;
 }
 
 .list-section {
@@ -268,10 +273,10 @@ fieldset {
 .test-result-section {
   display: none;
   position: absolute;
-  top: 10vh;
+  top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
-  width: 50vw;
   max-height: 80vh;
   margin: auto;
   padding: 20px;
@@ -281,15 +286,53 @@ fieldset {
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
+@media screen and (max-width: 714px) {
+  .test-result-section {
+    width: 80vw;
+  }
+}
+@media screen and (min-width: 715px) {
+  .test-result-section {
+    width: 50vw;
+  }
+}
 
 .test-result-heading {
   font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 2em;
 }
 
+.test-results-popup::before {
+  content: "틀린 문제를 확인하세요";
+  display: block;
+  padding-bottom: 20px;
+}
+
+.test-results-popup > li > * {
+  display: inline-block;
+  width: 30%;
+  font-size: 1.2rem;
+}
+.test-results-popup > li > *:first-child {
+  font-style: normal;
+  font-weight: 500;
+}
+.test-results-popup > li > *:nth-child(2) {
+  color: #ff0000;
+}
+.test-results-popup > li > *:nth-child(3) {
+  color: #008000;
+}
+
 .close-result-btn {
   background-color: #ccc;
+  width: 30px;
+  height: 30px;
+  box-shadow: none;
+  cursor: pointer;
   color: #333;
+  position: absolute;
+  bottom: 20px;
 }
 
 /* 블러처리 */
