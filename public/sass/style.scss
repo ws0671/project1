@@ -113,7 +113,12 @@ legend, .a11y-hidden {
 
 // search section setting
 .search-section {
-  width: 45%;
+  @include mobile(714px){
+    width: 80%;
+  }
+  @include desktop(715px){
+    width: 45%;
+  }
   display: grid;
   margin: 2.5%;
   grid-template-areas: "searchHeading searchHeading searchHeading"
@@ -152,11 +157,15 @@ legend, .a11y-hidden {
   width: 90%;
 }
 .list-section {
-  width: 45%;
+  @include mobile(714px){
+    width: 80%;
+  }
+  @include desktop(715px){
+    width: 45%;
+  }  
   min-width: 300px;
   margin: 2.5%;
   background-color: #fff;
-  height: calc(100%-4vh);
   box-shadow: 0 0 3px 3px rgba(0,0,0,0.2);
   overflow: auto;
   padding: 20px 0;
