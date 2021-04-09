@@ -64,7 +64,7 @@ const generateNextId = () => {
 //이벤트 핸들러
 $searchBtn.onclick = e => {
   if($searchInput.value === "") return
-  if($searchInput.value === words.map(({word}) => word).find(element => element === $searchInput.value))    
+  if(words.map(({word}) => word).find(element => element === $searchInput.value))    
   return search($searchInput.value);
   alert("단어가 없습니다");
 }
