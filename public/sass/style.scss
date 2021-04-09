@@ -4,6 +4,15 @@
 @import "mixin";
 @import "variables";
 
+@keyframes startAni{
+  0% {
+    opacity: 60%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
 // 리셋 리스트
 .reset-list {
   padding-left: 0;
@@ -127,7 +136,7 @@ legend, .a11y-hidden {
                        ". . .";
   @include mobile(714px) {
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 2fr 1fr 1fr 0fr;
+    grid-template-rows: 1fr 1fr 1fr 0fr;
   }
   @include desktop(715px) {
     grid-template-columns: 1fr 1fr 1fr;
@@ -173,37 +182,41 @@ legend, .a11y-hidden {
 .words-list {
   padding: 20px;
   margin: 20px;
-  max-height: 60vh;
   overflow: auto;
   background-color: $word_theme_bgc;
-  & .wordflexbox {
-    display: flex;
-    flex-wrap: nowrap;
-    & * {
-      white-space: nowrap; 
-      text-overflow: ellipsis; 
-      overflow: hidden;
-      margin: 5px;
-      &:nth-child(1) {
-        font-weight: 500;
-        min-width: 40%;
-      }
-      &:nth-child(2){
-        flex-grow: 1;
-      }
-      &:nth-child(3){
-        width: 15px;
-        height: 15px;
-        background-image: url(../css/close-btn.png);
-        background-position: center;
-        background-size: cover;
-        cursor: pointer;
-        &:hover {
-          opacity: 80%;
-        }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  & * {
+    white-space: nowrap; 
+    text-overflow: ellipsis; 
+    overflow: hidden;
+    margin: 5px;
+    &:nth-child(3n+1) {
+      font-weight: 500;
+      min-width: 38%;
+    }
+    &:nth-child(3n+2){
+      min-width: 38%;
+    }
+    &:nth-child(3n+3){
+      width: 10%;
+      background-image: url(../css/close-btn.png);
+      background-position: center;
+      background-size: 15px;
+      background-repeat: no-repeat;
+      cursor: pointer;
+      &:hover {
+        opacity: 80%;
       }
     }
   }
+  @include mobile(714px){
+    max-height: 30vh;
+  }
+  @include desktop(715px){
+    max-height: 60vh;
+  }  
 }
 
 
@@ -237,6 +250,10 @@ fieldset {
 .test-start-btn {
   left: 30px;
   cursor: pointer;
+  animation-name: startAni;
+  animation-duration: 1500ms;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 .test-num {
   left: calc(50% - 12px);
@@ -271,6 +288,7 @@ fieldset {
 
 // 팝업창
 .test-result-popup {
+  font-family: 'Do Hyeon', sans-serif;
   display: none;
   position: absolute;
   top: 0;
@@ -298,7 +316,6 @@ fieldset {
 }
 
 .test-result-heading {
-  font-family: $secondary_font_family;
   font-size: 2em;
 }
 .test-score {
