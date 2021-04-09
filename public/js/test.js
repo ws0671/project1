@@ -128,10 +128,11 @@ const changeDisabledAndCursor = () => {
 };
   
   //이벤트 핸들러
-$testStartAndSkipBtn.onclick = e => {
-  if(testWords.length === 0) return;
+$testStartAndSkipBtn.onclick = async e => {
+  // if(testWords.length === 0) return;
   if (e.target.textContent === 'skip') return skip();
   testRunning = true;
+  await getTestWords();
   changeDisabledAndCursor();
   testWordsOutput();
   $answerInput.focus();
@@ -141,8 +142,7 @@ $testStartAndSkipBtn.onclick = e => {
 $testFinishBtn.onclick = () => {
   $answerInput.value = '';
   popupOutput();
-};
-
+}; 
 
 $PopupCloseBtn.onclick = () => {
   $testPage.classList.toggle('active');
@@ -165,7 +165,7 @@ $wordsTab.onclick = () => {
 
 $testTab.onclick = () => {
   if ($testPage.classList.contains('active')) return;
-  getTestWords();
+  // getTestWords();
   $testPage.classList.toggle('active');
   $wordsPage.classList.toggle('active');
 };
