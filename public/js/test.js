@@ -33,14 +33,10 @@ const getTestWords = async () => {
   const res = await fetch('/words');
   testWords = await res.json();
   
-  const shuffle = array => {
-      for (let i = 0; i < array.length; i++) {
-        let j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      };
-      return array;
-    };
-  shuffle(testWords);
+  for (let i = 0; i < testWords.length; i++) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [testWords[i], testWords[j]] = [testWords[j], testWords[i]];
+  };
   testWordsNum = testWords.length;
 };
 
