@@ -3,9 +3,9 @@ const express = require('express');
 const app = express();
 
 let words = [
-  { id: 3, word: 'rabbit', mean: '토끼', result: true },
-  { id: 2, word: 'lion', mean: '사자', result: true },
-  { id: 1, word: 'tree', mean: '나무', result: true }
+  { id: 3, word: 'rabbit', mean: '토끼'},
+  { id: 2, word: 'lion', mean: '사자'},
+  { id: 1, word: 'tree', mean: '나무'}
 ];
 
 app.use(express.static('public'));

@@ -14,9 +14,9 @@ const getWords = async () => {
 
 const render = () => {
   $wordList.innerHTML = words.map(({id,word,mean}) => {
-    return `<div class="wordflexbox"><dt id="${id}">${word}</dt>
+    return `<dt id="${id}">${word}</dt>
     <dd id="ck-${id}">${mean}</dd>
-    <dd id="ck-${id}-remove" aria-role="button" class="remove-btn" aria-label="delete"></dd></div>` 
+    <dd id="ck-${id}-remove" aria-role="button" class="remove-btn" aria-label="delete"></dd>` 
   }).join('');
 }
 
@@ -90,10 +90,15 @@ $clearBtn.onclick = () => {
 }
 
 $searchInput.onkeypress = e =>{
-  if(e.key === "Enter" ) $searchResult.focus()
+  if(e.key === "Enter" && $searchInput.value) $searchResult.focus()
 }
 
 $searchResult.onkeypress = e =>{
-  if(e.key === "Enter" ) $addBtn.focus()
+  if(e.key === "Enter" && $searchResult.value) {
+    add($searchInput.value, $searchResult.value)
+    $searchInput.value = "";
+    $searchResult.value = "";
+  };
+
 }
 
