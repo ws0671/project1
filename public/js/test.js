@@ -129,9 +129,9 @@ const changeDisabledAndCursor = () => {
   
   //이벤트 핸들러
 $testStartAndSkipBtn.onclick = async e => {
+  if (e.target.textContent === 'skip') return skip();
   await getTestWords();
   if(testWords.length === 0) return;
-  if (e.target.textContent === 'skip') return skip();
   testRunning = true;
   changeDisabledAndCursor();
   testWordsOutput();
